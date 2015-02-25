@@ -15,12 +15,15 @@ public class PlayerController : MonoBehaviour {
 	public float rotationSpeed;
 	public float moveHorizontal;
 	public float moveVertical;
+	public float turnSpeed = 15f;
 
 	void FixedUpdate()
 	{
 		moveHorizontal = Input.GetAxis ("Horizontal");
 		//goes between -1 and 1 (-1 is left)
 		moveVertical = Input.GetAxis ("Vertical");
+
+
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 		rigidbody.velocity = speed * movement;
@@ -36,10 +39,32 @@ public class PlayerController : MonoBehaviour {
 				Mathf.Clamp (rigidbody.position.z, boundary.zMin, boundary.zMax)
 			);
 
+		if (moveHorizontal != 0f || moveVertical != 0f) {
+			Rotate(moveHorizontal, moveVertical);	
+		
+		}
 		//rigidbody.rotation = Quaternion.Euler (0.0f, 0.0f, rigidbody.velocity.x * -tilt);
 
 
 		//rigidbody.rotation = Quaternion.Euler (0.0f, 
 
 	}
+
+	void Rotate(float horiz, float vert)
+	{
+		//create targetDirection
+		Vector3 targetDirection = new Vector3 (horiz, 0f, vert);
+
+		//create a quaternion rotation based on vector (independent of camera rotation)
+		//rotating around the y axis
+		Quaternion targetRotation = Quaternion.LookRotation (targetDirection, Vector3.up);
+
+		//Create rotation increment between current and target rotation
+		Quaternion newRotation = Quaternion.Lerp (rigidbody.rotation, targetRotation, turnSpeed * Time.deltaTime);
+
+		//change the player rotation to reflect
+		rigidbody.MoveRotation (newRotation);
+	}
+
+
 }
