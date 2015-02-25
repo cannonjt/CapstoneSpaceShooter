@@ -8,22 +8,21 @@ public class Boundary
 }
 
 public class PlayerController : MonoBehaviour {
-
-	public float speed;
+	
 	public Boundary boundary;
 	public float tilt;
-	public float rotationSpeed;
-	public float moveHorizontal;
-	public float moveVertical;
 	public float turnSpeed;
 	public float thrustSpeed;
 	public float maxSpeed;
 
 	void FixedUpdate()
 	{
-		moveHorizontal = Input.GetAxis ("Horizontal");
+		float moveHorizontal = Input.GetAxis ("Horizontal");
 		//goes between -1 and 1 (-1 is left)
-		moveVertical = Input.GetAxis ("Vertical");
+		float moveVertical = Input.GetAxis ("Vertical");
+		float horizontalHeld = Input.GetAxisRaw ("Horizontal");
+		float verticalHeld = Input.GetAxisRaw ("Vertical");
+
 
 		//clamp the ship in a specific region
 		rigidbody.position = new Vector3
@@ -33,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 				Mathf.Clamp (rigidbody.position.z, boundary.zMin, boundary.zMax)
 			);
 
-		if (moveHorizontal != 0f || moveVertical != 0f) {
+		if (horizontalHeld != 0f || verticalHeld != 0f) {
 			Rotate(moveHorizontal, moveVertical);	
 			//add thrust in the direction of movement
 			if(rigidbody.velocity.magnitude < maxSpeed){
