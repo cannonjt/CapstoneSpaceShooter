@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour {
 	public float rotationSpeed;
 	public float moveHorizontal;
 	public float moveVertical;
-	public float turnSpeed = 15f;
+	public float turnSpeed;
+	public float thrustSpeed;
+	public float maxSpeed;
 
 	void FixedUpdate()
 	{
@@ -23,15 +25,7 @@ public class PlayerController : MonoBehaviour {
 		//goes between -1 and 1 (-1 is left)
 		moveVertical = Input.GetAxis ("Vertical");
 
-
-
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-		rigidbody.velocity = speed * movement;
-
-		//float rotationalAngle = Vector3.Angle(new Vector3(0.0f,
-
-		//goal: get rotation value between current vector and target vector
-
+		//clamp the ship in a specific region
 		rigidbody.position = new Vector3
 			(
 				Mathf.Clamp (rigidbody.position.x, boundary.xMin, boundary.xMax),
@@ -41,7 +35,12 @@ public class PlayerController : MonoBehaviour {
 
 		if (moveHorizontal != 0f || moveVertical != 0f) {
 			Rotate(moveHorizontal, moveVertical);	
-		
+			//add thrust in the direction of movement
+			if(rigidbody.velocity.magnitude < maxSpeed){
+
+				rigidbody.AddForce(transform.forward * thrustSpeed);
+
+			}
 		}
 		//rigidbody.rotation = Quaternion.Euler (0.0f, 0.0f, rigidbody.velocity.x * -tilt);
 
