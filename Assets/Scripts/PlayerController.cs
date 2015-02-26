@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 			Quaternion targetRotation = Quaternion.LookRotation (targetDirection, Vector3.up);
 			
 			//Create rotation increment between current and target rotation
-			Quaternion newRotation = Quaternion.Lerp (rigidbody.rotation, targetRotation, turnSpeed * Time.deltaTime);
+			Quaternion newRotation = Quaternion.RotateTowards (rigidbody.rotation, targetRotation, turnSpeed * Time.deltaTime);
 
 			//change the player rotation to reflect
 			rigidbody.MoveRotation (newRotation);

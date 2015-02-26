@@ -1572,7 +1572,7 @@ MonoBehaviour:
     zMax: 4.5
     zMin: -4.5
   tilt: 15
-  turnSpeed: 15
+  turnSpeed: 600
   thrustSpeed: 10
   maxSpeed: 20
 --- !u!54 &658081469
@@ -1584,7 +1584,7 @@ Rigidbody:
   m_GameObject: {fileID: 658081463}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1.25
+  m_Drag: 1
   m_AngularDrag: .0500000007
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -4338,6 +4338,14 @@ Prefab:
     - target: {fileID: 400004, guid: 3322fee864d831d48a7c873a6631efae, type: 2}
       propertyPath: m_LocalPosition.y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: 3322fee864d831d48a7c873a6631efae, type: 2}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3322fee864d831d48a7c873a6631efae, type: 2}
+      propertyPath: turnSpeed
+      value: 600
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3322fee864d831d48a7c873a6631efae, type: 2}
