@@ -15,6 +15,13 @@ public class PlayerController : MonoBehaviour {
 	public float thrustSpeed;
 	public float maxSpeed;
 
+	private GameObject thruster;
+
+	void Start()
+	{
+		thruster = GameObject.Find ("engines_player");
+	}
+
 	void FixedUpdate()
 	{
 		float moveHorizontal = Input.GetAxis ("Horizontal");
@@ -33,18 +40,21 @@ public class PlayerController : MonoBehaviour {
 			);
 
 		if (horizontalHeld != 0f || verticalHeld != 0f) {
-			Rotate(moveHorizontal, moveVertical);	
-			//add thrust in the direction of movement
-			if(rigidbody.velocity.magnitude < maxSpeed){
+			//movement keys held, calculate rotations and turn on thruster
+			Rotate (moveHorizontal, moveVertical);
+			thruster.SetActive (true);
 
-				rigidbody.AddForce(transform.forward * thrustSpeed);
+
+			//add thrust in the direction of movement
+			if (rigidbody.velocity.magnitude < maxSpeed) {
+
+					rigidbody.AddForce (transform.forward * thrustSpeed);
 
 			}
+		} else {
+			//turn off thruster if not moving
+			thruster.SetActive (false);
 		}
-		//rigidbody.rotation = Quaternion.Euler (0.0f, 0.0f, rigidbody.velocity.x * -tilt);
-
-
-		//rigidbody.rotation = Quaternion.Euler (0.0f, 
 
 	}
 
@@ -53,15 +63,20 @@ public class PlayerController : MonoBehaviour {
 		//create targetDirection
 		Vector3 targetDirection = new Vector3 (horiz, 0f, vert);
 
-		//create a quaternion rotation based on vector (independent of camera rotation)
-		//rotating around the y axis
-		Quaternion targetRotation = Quaternion.LookRotation (targetDirection, Vector3.up);
+		//ensure it is not attempting to rotate when not needed
+		if( !targetDirection.Equals(Vector3.zero)){
 
-		//Create rotation increment between current and target rotation
-		Quaternion newRotation = Quaternion.Lerp (rigidbody.rotation, targetRotation, turnSpeed * Time.deltaTime);
+			//create a quaternion rotation based on vector (independent of camera rotation)
+			//rotating around the y axis
+			Quaternion targetRotation = Quaternion.LookRotation (targetDirection, Vector3.up);
+			
+			//Create rotation increment between current and target rotation
+			Quaternion newRotation = Quaternion.Lerp (rigidbody.rotation, targetRotation, turnSpeed * Time.deltaTime);
 
-		//change the player rotation to reflect
-		rigidbody.MoveRotation (newRotation);
+			//change the player rotation to reflect
+			rigidbody.MoveRotation (newRotation);
+		}
+
 	}
 
 
