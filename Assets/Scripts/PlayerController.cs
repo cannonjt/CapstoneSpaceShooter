@@ -6,10 +6,23 @@ public class Boundary
 {
 	public float xMax, xMin, zMax, zMin;
 }
+[System.Serializable]
+public class ShotProperties
+{
+	public GameObject shot;
+	public Transform shotSpawn;
+	public float fireRate;
+
+	[HideInInspector]
+	public float nextFire;
+
+
+}
 
 public class PlayerController : MonoBehaviour {
 	
 	public Boundary boundary;
+	public ShotProperties shotProperties;
 	public float tilt;
 	public float turnSpeed;
 	public float thrustSpeed;
@@ -58,6 +71,11 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	void Update()
+	{
+		shoot();
+	}
+
 	void Rotate(float horiz, float vert)
 	{
 		//create targetDirection
@@ -77,6 +95,16 @@ public class PlayerController : MonoBehaviour {
 			rigidbody.MoveRotation (newRotation);
 		}
 
+	}
+
+	void shoot()
+	{
+		if (Input.GetButton ("Fire1") && Time.time > shotProperties.nextFire) {
+			shotProperties.nextFire = Time.time + shotProperties.fireRate;
+			Instantiate(shotProperties.shot, shotProperties.shotSpawn.position,
+			            shotProperties.shotSpawn.rotation);
+			audio.Play ();	
+		}
 	}
 
 
