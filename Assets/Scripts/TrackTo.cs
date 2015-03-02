@@ -11,10 +11,10 @@ public class TrackTo : MonoBehaviour {
 
 
 	void Update(){
-		print ("Hello");
-		float potato = getDistance();
 
-		if(potato <= minDist) {
+		float howFar = getDistance();
+
+		if(howFar <= minDist) {
 
 			Vector3 track = target.position - transform.position;
 			print(track);
