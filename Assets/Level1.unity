@@ -1265,15 +1265,11 @@ MonoBehaviour:
     xMin: -8.5
     zMax: 4.5
     zMin: -4.5
-  shotProperties:
-    shot: {fileID: 100000, guid: c09defa43bd3ced478fcf765fdefc769, type: 2}
-    shotSpawn: {fileID: 1681580754}
-    fireRate: .0500000007
-    nextFire: 0
   tilt: 15
   turnSpeed: 600
   thrustSpeed: 10
   maxSpeed: 20
+  currentWep: {fileID: 11400000, guid: 94e9644158dbf0047a3d0311b2c3fceb, type: 2}
 --- !u!64 &180724961
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1390,6 +1386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 100
   weapon: {fileID: 0}
   shield: 0
 --- !u!1 &184024945
@@ -6948,11 +6945,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 1681580754}
   m_Layer: 0
-  m_Name: Shot Spawn
-  m_TagString: Untagged
+  m_Name: Player Shot Spawn
+  m_TagString: ShotSpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1681580754
 Transform:
@@ -7016,6 +7013,51 @@ Prefab:
     - target: {fileID: 19825782, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
       propertyPath: playOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11425782, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11425780, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: shotProperties.fireRate
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11425780, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: shotProperties.shot
+      value: 
+      objectReference: {fileID: 100002, guid: ddcae839a6418004e8ba4245a6d2bfd9, type: 2}
+    - target: {fileID: 11425780, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: shotProperties2.shot
+      value: 
+      objectReference: {fileID: 100000, guid: c09defa43bd3ced478fcf765fdefc769, type: 2}
+    - target: {fileID: 11425780, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: shotProperties2.shotSpawn
+      value: 
+      objectReference: {fileID: 1681580754}
+    - target: {fileID: 11425780, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: shotProperties2.fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 125786, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: m_Name
+      value: Player Shot Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 11425780, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: currentWep
+      value: 
+      objectReference: {fileID: 11400000, guid: 94e9644158dbf0047a3d0311b2c3fceb,
+        type: 2}
+    - target: {fileID: 125786, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: m_TagString
+      value: ShotSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 11425780, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: shotSpawn
+      value: 
+      objectReference: {fileID: 1681580754}
+    - target: {fileID: 125786, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}

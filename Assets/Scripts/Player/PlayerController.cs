@@ -6,35 +6,23 @@ public class Boundary
 {
 	public float xMax, xMin, zMax, zMin;
 }
-[System.Serializable]
-public class ShotProperties
-{
-	public GameObject shot;
-	public Transform shotSpawn;
-	public float fireRate;
-
-	[HideInInspector]
-	public float nextFire;
-
-
-}
 
 public class PlayerController : MonoBehaviour {
 	
 	public Boundary boundary;
-	public ShotProperties shotProperties;
 	public float tilt;
 	public float turnSpeed;
 	public float thrustSpeed;
 	public float maxSpeed;
+	public Weapon currentWep;
 
 	private GameObject thruster;
 
 	void Start()
 	{
 		thruster = GameObject.Find ("engines_player");
+		currentWep = (Weapon)Instantiate (currentWep);
 	}
-
 	void FixedUpdate()
 	{
 		float moveHorizontal = Input.GetAxis ("Horizontal");
@@ -73,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update()
 	{
-		shoot();
+		currentWep.shoot();
 	}
 
 	void Rotate(float horiz, float vert)
@@ -97,15 +85,7 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	void shoot()
-	{
-		if (Input.GetButton ("Fire1") && Time.time > shotProperties.nextFire) {
-			shotProperties.nextFire = Time.time + shotProperties.fireRate;
-			Instantiate(shotProperties.shot, shotProperties.shotSpawn.position,
-			            shotProperties.shotSpawn.rotation);
-			audio.Play ();	
-		}
-	}
+
 
 
 }

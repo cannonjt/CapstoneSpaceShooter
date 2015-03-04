@@ -4,12 +4,13 @@ using System.Collections;
 public class PlayerProperties : MonoBehaviour {
 
 	public int health;
+	public int maxHealth;
 	public GameObject weapon;
 	public int shield;
 
 	// Use this for initialization
 	void Start () {
-		health = 100;
+		health = maxHealth;
 		shield = 50;
 
 	}
