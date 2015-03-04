@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Red Laser
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,15 +36,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e14a158665844f4997777c7ef9424b4, type: 3}
+  m_Script: {fileID: 11500000, guid: ca11c751741d45149a2d1b137723e30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shotProperties:
     shot: {fileID: 100002, guid: ddcae839a6418004e8ba4245a6d2bfd9, type: 2}
     shotSpawn: {fileID: 0}
     fireRate: .100000001
-    numberOfShots: 1
-    firingAngle: 90
+    numberOfShots: 5
+    firingAngle: 75
     nextFire: 0
 --- !u!1001 &100100000
 Prefab:
