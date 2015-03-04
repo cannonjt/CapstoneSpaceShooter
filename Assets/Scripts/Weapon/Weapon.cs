@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour {
 	}
 	public void shoot()
 	{
-		print (shotProperties.shotSpawn);
+		//print (shotProperties.shotSpawn);
 		if (Input.GetButton ("Fire1") && Time.time > shotProperties.nextFire) {
 			shotProperties.nextFire = Time.time + shotProperties.fireRate;
 			Instantiate (shotProperties.shot, shotProperties.shotSpawn.position,
