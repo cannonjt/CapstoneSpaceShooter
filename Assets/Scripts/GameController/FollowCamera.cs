@@ -2,16 +2,16 @@
 using System.Collections;
 
 public class FollowCamera : MonoBehaviour {
-	private GameObject camera;
+	private GameObject playerCamera;
 
 	// Use this for initialization
 	void Start () {
-		camera = GameObject.FindGameObjectWithTag("MainCamera");
+		playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 cameraPOS = camera.transform.transform.position;
+		Vector3 cameraPOS = playerCamera.transform.transform.position;
 
 		transform.position = new Vector3(cameraPOS.x, 0, cameraPOS.z);
 	}
