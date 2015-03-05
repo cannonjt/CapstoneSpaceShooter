@@ -85,6 +85,14 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	public void changeWeapon(Weapon newWep)
+	{
+		//replace the old weapon with a copy of the new one
+		currentWep = (Weapon)Instantiate (newWep);
+		Destroy (currentWep);
+
+	}
+
 
 
 

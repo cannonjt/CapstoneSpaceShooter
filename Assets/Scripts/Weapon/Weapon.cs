@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour {
 	void Awake()
 	{
 		shotProperties.shotSpawn = GameObject.Find("Player Shot Spawn").transform;
+		shotProperties.nextFire = 0f;
 	}
 	public virtual void shoot()
 	{
