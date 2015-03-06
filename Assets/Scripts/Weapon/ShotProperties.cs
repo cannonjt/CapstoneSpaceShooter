@@ -9,7 +9,9 @@ public class ShotProperties{
 	public int numberOfShots; //for multishot weapons
 	public float firingAngle; //the maximum angle shots will fire at
 	public float range;
-	
+	public float damage;
+	public bool destroyOnHit;
+
 	[HideInInspector]
 	public float nextFire;
 	[HideInInspector]
