@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		thruster = GameObject.Find ("engines_player");
 		currentWep = (Weapon)Instantiate (currentWep);
+		currentWep.GetComponent<Weapon> ().setUp (gameObject);
 	}
 	void FixedUpdate()
 	{
@@ -87,8 +88,9 @@ public class PlayerController : MonoBehaviour {
 
 	public void changeWeapon(Weapon newWep)
 	{
-		Destroy(GameObject.FindGameObjectWithTag("Weapon"));
+		Destroy(currentWep);
 		currentWep = (Weapon)Instantiate (newWep);
+		currentWep.GetComponent<Weapon> ().setUp (gameObject);
 
 	}
 
