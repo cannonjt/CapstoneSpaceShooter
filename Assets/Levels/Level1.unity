@@ -1685,6 +1685,9 @@ MonoBehaviour:
   shootDist: 0
   target: {fileID: 180724958}
   distance: 0
+  fieldOfViewAngle: 110
+  lengthOfSight: 2
+  objectDetected: 0
 --- !u!1 &222806414
 GameObject:
   m_ObjectHideFlags: 0
@@ -4556,6 +4559,9 @@ MonoBehaviour:
   shootDist: 0
   target: {fileID: 180724958}
   distance: 0
+  fieldOfViewAngle: 110
+  lengthOfSight: 2
+  objectDetected: 0
 --- !u!54 &945438609
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8944,6 +8950,9 @@ MonoBehaviour:
   shootDist: 0
   target: {fileID: 180724958}
   distance: 0
+  fieldOfViewAngle: 110
+  lengthOfSight: 2
+  objectDetected: 0
 --- !u!54 &2096656765
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ TagManager:
   - Follower
   - Weapon
   - PowerUp
+  - Asteroid
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
