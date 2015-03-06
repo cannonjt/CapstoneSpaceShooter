@@ -7,7 +7,7 @@ TagManager:
   - Projectile
   - Enemy
   - Follower
-  - ShotSpawn
+  - Weapon
   - PowerUp
   - 
   Builtin Layer 0: Default

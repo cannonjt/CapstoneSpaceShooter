@@ -15,10 +15,10 @@ public class Weapon : MonoBehaviour {
 	{
 		//print (shotProperties.shotSpawn);
 		if (Input.GetButton ("Fire1") && Time.time > shotProperties.nextFire) {
-			shotProperties.nextFire = Time.time + shotProperties.fireRate;
-			spawnBullet();
-			//audio.Play ();
-		}
+				shotProperties.nextFire = Time.time + shotProperties.fireRate;
+				spawnBullet ();
+				audio.Play ();
+			}
 	}
 
 	public virtual void spawnBullet()
