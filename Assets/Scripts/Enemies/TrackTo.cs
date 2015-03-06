@@ -13,17 +13,11 @@ public class TrackTo : MonoBehaviour {
 	public float distance;         //distance between entity and the target
 
 	void Start(){
-		if (target == null) {
-			target = FindClosestEnemy().transform; /**TODO: Also needs to be in a place that is can refind a target if 
-			                                        target == null.**/
-		}
+
 	}
 
 	void Update(){
 
-		if(gameObject.tag == "Follower"){
-			returnHome ();
-		}
 		float howFar = getDistance();
 
 		if(howFar <= maxDist) {
@@ -54,35 +48,5 @@ public class TrackTo : MonoBehaviour {
 		return distance;
 	}
 
-	//Targets the closest enemy if no specified target
-	//from http://docs.unity3d.com/ScriptReference/GameObject.FindGameObjectsWithTag.html
-	GameObject FindClosestEnemy() {
-		GameObject[] gos;
-		gos = GameObject.FindGameObjectsWithTag("Enemy");
-		GameObject closest = null;
-		float distance = Mathf.Infinity;
-		Vector3 position = transform.position;
-		foreach (GameObject go in gos) {
-			Vector3 diff = go.transform.position - position;
-			float curDistance = diff.sqrMagnitude;
-			if (curDistance < distance) {
-				closest = go;
-				distance = curDistance;
-			}
-		}
-		return closest;
-	}
 
-	void returnHome(){
-
-		Transform parent = GameObject.FindGameObjectWithTag("Player").transform;
-		float playerDist = Vector3.Distance (parent.position, transform.position);
-
-		if (playerDist >= maxDist) {  /**TODO: make a new variable for follower.... Also we need away to reset the target back to an enemy once he is closer to the player **/
-						target = parent.transform;	
-		} 
-		//else {
-			//target = FindClosestEnemy().transform;
-		//}
-	}
 }
