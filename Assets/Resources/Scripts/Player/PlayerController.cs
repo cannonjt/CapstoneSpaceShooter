@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 	public float thrustSpeed;
 	public float maxSpeed;
 	public Weapon currentWep;
+	public Weapon defaultWep;
 
 	private GameObject thruster;
 
@@ -86,12 +87,21 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	//sets the current weapon to the specified weapon
 	public void changeWeapon(Weapon newWep)
 	{
 		Destroy(currentWep.gameObject);
 		currentWep = (Weapon)Instantiate (newWep);
 		currentWep.GetComponent<Weapon> ().setUp (gameObject);
 
+	}
+
+	//sets the current weapon to the default
+	public void resetWeapon()
+	{
+		Destroy(currentWep.gameObject);
+		currentWep = (Weapon)Instantiate (defaultWep);
+		currentWep.GetComponent<Weapon> ().setUp (gameObject);
 	}
 
 

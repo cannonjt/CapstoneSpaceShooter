@@ -31,10 +31,7 @@ public class Weapon : MonoBehaviour {
 						{
 							GameObject player = GameObject.FindGameObjectWithTag ("Player");
 							PlayerController playerController = (PlayerController)player.GetComponent (typeof(PlayerController));
-							GameObject laser = (GameObject)Resources.Load("Prefabs/Weapons/Red Laser");
-							//print(laser);
-							Weapon defaultLaser = laser.GetComponent<Weapon>();
-							playerController.changeWeapon (defaultLaser);
+							playerController.resetWeapon ();
 						}
 						//else subtract 1 bullet
 						else
