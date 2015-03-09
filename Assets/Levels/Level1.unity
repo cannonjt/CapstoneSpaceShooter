@@ -1562,7 +1562,7 @@ GameObject:
   - 114: {fileID: 186838015}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1684,7 +1684,7 @@ MonoBehaviour:
   patrolSpeed: 1
   chaseSpeed: 3
   thrustSpeed: 8
-  minDist: 10
+  minDist: 3
   maxDist: 10
   shootDist: 0
   target: {fileID: 180724958}
@@ -4447,7 +4447,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
@@ -7199,6 +7199,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 107cbd9cb3de24343a512fbbb0c60185, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 107cbd9cb3de24343a512fbbb0c60185, type: 2}
   m_RootGameObject: {fileID: 186838007}
@@ -7313,7 +7317,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 900d50b4d548aba4b9094a66f9fbf906, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 900d50b4d548aba4b9094a66f9fbf906, type: 2}
       propertyPath: leader
@@ -7327,6 +7331,10 @@ Prefab:
     - target: {fileID: 11400000, guid: 900d50b4d548aba4b9094a66f9fbf906, type: 2}
       propertyPath: move.thrustSpeed
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 900d50b4d548aba4b9094a66f9fbf906, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 900d50b4d548aba4b9094a66f9fbf906, type: 2}

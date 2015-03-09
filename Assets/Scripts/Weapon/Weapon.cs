@@ -27,8 +27,10 @@ public class Weapon : MonoBehaviour {
 	public virtual void spawnBullet()
 	{
 		//generates a Bullet
-		Instantiate (shotProperties.shot, shotProperties.shotSpawn.position,
+		GameObject theBullet = (GameObject)Instantiate (shotProperties.shot, shotProperties.shotSpawn.position,
 		             shotProperties.shotSpawn.rotation);
+		theBullet.GetComponent<Damager> ().setDamage(shotProperties.damage);
+		theBullet.GetComponent<Damager> ().setDoH(shotProperties.destroyOnHit);
 	}
 	
 	//call setUp before trying to use weapon

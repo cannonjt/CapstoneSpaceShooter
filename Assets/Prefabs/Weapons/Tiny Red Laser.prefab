@@ -104,6 +104,8 @@ MonoBehaviour:
     numberOfShots: 1
     firingAngle: 90
     range: 0
+    damage: 5
+    destroyOnHit: 1
     nextFire: 0
     shotSpawn: {fileID: 0}
   user: {fileID: 0}

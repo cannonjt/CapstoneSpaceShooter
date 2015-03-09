@@ -100,12 +100,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotProperties:
     shot: {fileID: 100000, guid: c09defa43bd3ced478fcf765fdefc769, type: 2}
-    shotSpawn: {fileID: 0}
     fireRate: 2
     numberOfShots: 70
     firingAngle: 100
     range: 0
+    damage: 75
+    destroyOnHit: 0
     nextFire: 97.4848251
+    shotSpawn: {fileID: 0}
+  user: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

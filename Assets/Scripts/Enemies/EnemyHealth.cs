@@ -19,7 +19,7 @@ public class EnemyHealth : MonoBehaviour {
 			//Projectiles have damagers. I know, workaroundy, but best I could do
 			GameObject bullet = other.gameObject;
 			Damager theThing = bullet.GetComponent<Damager>();
-			if (!theThing.destroyOnHit)
+			if (!theThing.getDoH ())
 			{
 				//check if we're inv
 				if (invToPirece)
@@ -29,14 +29,14 @@ public class EnemyHealth : MonoBehaviour {
 				else
 				{
 					//we got hit, take damage and become immune
-					takeDamage(theThing.damage);
+					takeDamage(theThing.getDamage());
 					invToPirece = true;
 					invLength = Time.time + 1;
 				}
 			}
 			else
 			{
-				takeDamage (theThing.damage);
+				takeDamage (theThing.getDamage());
 				Destroy (other.gameObject);
 			}
 		}

@@ -104,8 +104,11 @@ MonoBehaviour:
     numberOfShots: 1
     firingAngle: 90
     range: 0
+    damage: 10
+    destroyOnHit: 1
     nextFire: 0
     shotSpawn: {fileID: 0}
+  user: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
