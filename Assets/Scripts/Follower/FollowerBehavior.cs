@@ -38,11 +38,15 @@ public class FollowerBehavior : MonoBehaviour {
 		//seek a target if not returning to leader and not too far away
 		if(returning == false && howFarFromLeader <= move.maxRange) {
 
-			target = FindClosestEnemy().transform;
+			GameObject tempEnemy;
+			tempEnemy = FindClosestEnemy();
 
 
-			if(target != null)
+
+
+			if(tempEnemy != null)
 			{
+				target = tempEnemy.transform;
 				float howFarFromEnemy = getDistance (target);
 
 				if( howFarFromEnemy < move.maxRange )
