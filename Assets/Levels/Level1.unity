@@ -1579,6 +1579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fed521d355937e4a892359410ee6728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 100
+  invToPirece: 0
+  invLength: 0
 --- !u!54 &186838009
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4491,6 +4495,8 @@ GameObject:
   - 23: {fileID: 945438605}
   - 114: {fileID: 945438608}
   - 54: {fileID: 945438609}
+  - 114: {fileID: 945438611}
+  - 136: {fileID: 945438610}
   m_Layer: 0
   m_Name: vehicle_enemyShip
   m_TagString: Enemy
@@ -4577,6 +4583,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &945438610
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 945438604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: .748005688
+  m_Height: .46537292
+  m_Direction: 1
+  m_Center: {x: 0, y: -.0117364526, z: .35712111}
+--- !u!114 &945438611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 945438604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fed521d355937e4a892359410ee6728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 250
+  invToPirece: 0
+  invLength: 0
 --- !u!1 &951906331
 GameObject:
   m_ObjectHideFlags: 0
@@ -8882,6 +8916,8 @@ GameObject:
   - 23: {fileID: 2096656761}
   - 114: {fileID: 2096656764}
   - 54: {fileID: 2096656765}
+  - 114: {fileID: 2096656766}
+  - 136: {fileID: 2096656767}
   m_Layer: 0
   m_Name: vehicle_enemyShip_2
   m_TagString: Enemy
@@ -8968,6 +9004,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2096656766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2096656760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fed521d355937e4a892359410ee6728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 250
+  invToPirece: 0
+  invLength: 0
+--- !u!136 &2096656767
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2096656760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: .748005688
+  m_Height: .46537292
+  m_Direction: 1
+  m_Center: {x: 0, y: -.0117364526, z: .35712111}
 --- !u!1001 &2098545901
 Prefab:
   m_ObjectHideFlags: 0
