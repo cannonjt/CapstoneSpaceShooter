@@ -4,7 +4,7 @@ using System.Collections;
 public class Weapon : MonoBehaviour {
 
 	public ShotProperties shotProperties;
-	public GameObject user;
+	private GameObject user;
 	
 	void Awake()
 	{
@@ -16,35 +16,34 @@ public class Weapon : MonoBehaviour {
 		if (user.tag == "Player") {
 
 				if (Input.GetButton ("Fire1") && Time.time > shotProperties.nextFire) {
-						shotProperties.nextFire = Time.time + shotProperties.fireRate;
-						if (shotProperties.ammo == -5)
+					shotProperties.nextFire = Time.time + shotProperties.fireRate;
+					if (shotProperties.ammo == -5)
+					{
+						//default weapon has -5 ammo, so it doesn't use ammo
+						spawnBullet ();
+						audio.Play ();
+					}
+					else
+					{
+						//we have a weapon that shoots ammo
+						//if it has 0 ammo left, switch to normal weapon
+						if (shotProperties.ammo <= 0)
 						{
-							//default weapon has -5 ammo, so it doesn't use ammo
+							GameObject player = GameObject.FindGameObjectWithTag ("Player");
+							PlayerController playerController = (PlayerController)player.GetComponent (typeof(PlayerController));
+							GameObject laser = (GameObject)Resources.Load("Prefabs/Weapons/Red Laser");
+							//print(laser);
+							Weapon defaultLaser = laser.GetComponent<Weapon>();
+							playerController.changeWeapon (defaultLaser);
+						}
+						//else subtract 1 bullet
+						else
+						{
+							shotProperties.ammo--;
 							spawnBullet ();
 							audio.Play ();
 						}
-						else
-						{
-							//we have a weapon that shoots ammo
-							//if it has 0 ammo left, switch to normal weapon
-							if (shotProperties.ammo <= 0)
-							{
-								GameObject player = GameObject.FindGameObjectWithTag ("Player");
-								PlayerController playerController = (PlayerController)player.GetComponent (typeof(PlayerController));
-								GameObject laser = (GameObject)Resources.Load("Prefabs/Weapons/Red Laser");
-								//print(laser);
-								Weapon defaultLaser = laser.GetComponent<Weapon>();
-								playerController.changeWeapon (defaultLaser);
-							}
-							//else subtract 1 bullet
-							else
-							{
-								shotProperties.ammo--;
-								spawnBullet ();
-								audio.Play ();
-							}
-						}
-						
+					}
 				}
 		} else
 		ungatedShoot ();

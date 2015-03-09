@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 [System.Serializable]
-public class EnemyHealth : MonoBehaviour {
+public class EnemyProperties : MonoBehaviour {
 	public float health;
 	public float maxHealth;
+	public GameObject explosion;
 	[HideInInspector]
 	public bool invToPirece;
 	[HideInInspector]
@@ -47,6 +48,7 @@ public class EnemyHealth : MonoBehaviour {
 		if (health <= 0) 
 		{
 			Destroy (gameObject);
+			Instantiate(explosion, transform.position, transform.rotation);
 		}
 	}
 
