@@ -106,6 +106,7 @@ MonoBehaviour:
     range: 0
     damage: 10
     destroyOnHit: 1
+    ammo: -5
     nextFire: 0
     shotSpawn: {fileID: 0}
   user: {fileID: 0}

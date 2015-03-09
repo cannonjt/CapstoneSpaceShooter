@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void changeWeapon(Weapon newWep)
 	{
-		Destroy(currentWep);
+		Destroy(currentWep.gameObject);
 		currentWep = (Weapon)Instantiate (newWep);
 		currentWep.GetComponent<Weapon> ().setUp (gameObject);
 

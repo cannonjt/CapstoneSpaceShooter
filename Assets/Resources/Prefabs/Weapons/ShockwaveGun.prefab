@@ -104,8 +104,9 @@ MonoBehaviour:
     numberOfShots: 70
     firingAngle: 100
     range: 0
-    damage: 75
+    damage: 250
     destroyOnHit: 0
+    ammo: 5
     nextFire: 97.4848251
     shotSpawn: {fileID: 0}
   user: {fileID: 0}

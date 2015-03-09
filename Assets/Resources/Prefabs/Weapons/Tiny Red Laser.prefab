@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
   m_Layer: 0
-  m_Name: Shotgun
+  m_Name: Tiny Red Laser
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,9 +37,9 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 3dc7455402dfa462b89a4bbd513955e9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bf75b984df8a84987bcf3a8bf6e2862d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -95,18 +95,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca11c751741d45149a2d1b137723e30e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e14a158665844f4997777c7ef9424b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shotProperties:
-    shot: {fileID: 100002, guid: ddcae839a6418004e8ba4245a6d2bfd9, type: 2}
+    shot: {fileID: 100000, guid: cae23d35af156f14eb0c3e3b97ebbb3d, type: 2}
     fireRate: .100000001
-    numberOfShots: 5
-    firingAngle: 60
+    numberOfShots: 1
+    firingAngle: 90
     range: 0
     damage: 5
     destroyOnHit: 1
-    nextFire: 12.2824907
+    ammo: -5
+    nextFire: 0
     shotSpawn: {fileID: 0}
   user: {fileID: 0}
 --- !u!1001 &100100000

@@ -11,6 +11,7 @@ public class ShotProperties{
 	public float range;
 	public float damage;
 	public bool destroyOnHit;
+	public float ammo;
 
 	[HideInInspector]
 	public float nextFire;
