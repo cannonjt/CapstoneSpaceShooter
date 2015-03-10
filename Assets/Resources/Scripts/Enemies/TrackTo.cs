@@ -15,7 +15,8 @@ public class TrackTo : MonoBehaviour {
 	public float fieldOfViewAngle = 110f;  // Number of degrees, centred on forward, for the enemy see.
 	public float lengthOfSight = 2f;            // Distance in front of the entity that it can "see"
 	public bool objectDetected = false;	   // True if the entity "sees" an object and needs to change course
-	
+	public float obstacleAngle;
+
 	void Start(){
 		
 	}
@@ -42,7 +43,15 @@ public class TrackTo : MonoBehaviour {
 				checkSight();
 				if(objectDetected == true){
 					//avoid running in to it.
-					//print ("eek");
+					//Vector3 Angle = new Vector3(-obstacleAngle* 4.0f ,0, System.Math.Abs(obstacleAngle));
+					//Vector3 Where = Angle - transform.position; 
+					//Quaternion wantDirObstacle = Quaternion.LookRotation(Where, Vector3.up ); 
+					//Quaternion newRotationObstacle = Quaternion.RotateTowards(rigidbody.rotation, wantDirObstacle, 60*Time.deltaTime);
+					//rigidbody.MoveRotation (newRotationObstacle);
+					//transform.Rotate(0,-obstacleAngle* 3.0f,0);
+					transform.Rotate(0,(-obstacleAngle * 3.0f),0);
+					rigidbody.AddForce (transform.forward * thrustSpeed);
+					//print ("eek" + obstacleAngle);
 				}
 				else{
 					rigidbody.AddForce (transform.forward * thrustSpeed);
@@ -74,20 +83,21 @@ public class TrackTo : MonoBehaviour {
 										distance2 = curDistance;
 				}
 		}
-
-		
 		objectDetected = false;
+
 		//can we see it
 		if(closestA != null){
 			if ((Vector3.Distance (closestA.transform.position ,transform.position)) <= lengthOfSight) { 
 			
 				// Create a vector from the enemy to the asteroid and store the angle between it and forward.
 				Vector3 direction = closestA.transform.position - transform.position;
-				float angle = Vector3.Angle (direction, transform.forward);
-			
+				obstacleAngle = Vector3.Angle (direction, transform.forward);
+				Vector3 cross = Vector3.Cross (direction, transform.forward);
+				
 				// If the angle between forward and where the player is, is less than half the angle of view...
-				if (angle < fieldOfViewAngle * 0.5f) {
+				if (obstacleAngle < fieldOfViewAngle * 0.5f) {
 					objectDetected = true;
+					if(cross.y < 0){ obstacleAngle = -obstacleAngle; }
 				}
 				else{
 					objectDetected = false;
