@@ -1573,7 +1573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &186838008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1589,6 +1589,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 100
   explosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 2}
+  colors:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: .996078432, g: .996078432, b: .996078432, a: 0}
   invToPirece: 0
   invLength: 0
 --- !u!54 &186838009
@@ -4947,6 +4950,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 250
   explosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 2}
+  colors:
+  - {r: .985294104, g: .246323526, b: .597971559, a: 0}
+  - {r: .996078432, g: .996078432, b: .996078432, a: 0}
   invToPirece: 0
   invLength: 0
 --- !u!114 &945438612
@@ -6113,7 +6119,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -7829,7 +7835,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 900d50b4d548aba4b9094a66f9fbf906, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 900d50b4d548aba4b9094a66f9fbf906, type: 2}
       propertyPath: m_IsActive
@@ -9277,7 +9283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2016054518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9611,6 +9617,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 250
   explosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 2}
+  colors:
+  - {r: 1, g: .242647052, b: .791074932, a: 0}
+  - {r: .996078432, g: .996078432, b: .996078432, a: 0}
   invToPirece: 0
   invLength: 0
 --- !u!136 &2096656767

@@ -5,6 +5,8 @@ public class EnemyProperties : MonoBehaviour {
 	public float health;
 	public float maxHealth;
 	public GameObject explosion;
+	public Color[] colors;
+
 	[HideInInspector]
 	public bool invToPirece;
 	[HideInInspector]
@@ -45,11 +47,19 @@ public class EnemyProperties : MonoBehaviour {
 	void takeDamage(float damage)
 	{
 		health -= damage;
-		if (health <= 0) 
-		{
-			Destroy (gameObject);
-			Instantiate(explosion, transform.position, transform.rotation);
+		if (health <= 0) {
+				Destroy (gameObject);
+				Instantiate (explosion, transform.position, transform.rotation);
+		} else {
+			StartCoroutine(flashRed());
 		}
+	}
+
+	IEnumerator flashRed()
+	{
+		renderer.material.color = colors[0];
+		yield return new WaitForSeconds(0.05f);
+		renderer.material.color = colors[1];
 	}
 
 	void Update()

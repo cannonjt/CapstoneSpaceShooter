@@ -102,14 +102,13 @@ MonoBehaviour:
     shot: {fileID: 100002, guid: ddcae839a6418004e8ba4245a6d2bfd9, type: 2}
     fireRate: .100000001
     numberOfShots: 5
-    firingAngle: 60
+    firingAngle: 40
     range: 0
-    damage: 5
+    damage: 10
     destroyOnHit: 1
     ammo: 50
     nextFire: 12.2824907
     shotSpawn: {fileID: 0}
-  user: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
