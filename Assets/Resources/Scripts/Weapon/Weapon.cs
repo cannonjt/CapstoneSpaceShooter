@@ -15,7 +15,8 @@ public class Weapon : MonoBehaviour {
 		//print (shotProperties.shotSpawn);
 		if (user.tag == "Player") {
 
-				if (Input.GetButton ("Fire1") && Time.time > shotProperties.nextFire) {
+			if ((Input.GetButton ("Fire1") || Input.GetAxisRaw ("FireHorizontal") != 0 
+			     || Input.GetAxisRaw("FireVertical") != 0) && Time.time > shotProperties.nextFire) {
 					shotProperties.nextFire = Time.time + shotProperties.fireRate;
 					if (shotProperties.ammo == -5)
 					{
@@ -57,15 +58,23 @@ public class Weapon : MonoBehaviour {
 	
 	//call setUp before trying to use weapon
 	//shot spawn must be the first child
+	//sets the default spawn location to be first child
 	public void setUp(GameObject weaponUser){
 		user = weaponUser;
 		Transform userTransform = user.transform;
 		if (userTransform.childCount > 0) {
-			shotProperties.shotSpawn = userTransform.GetChild(0).transform;
+			setSpawnLocation(userTransform.GetChild(0).transform);
 		}
-		
-		//GameObject.Find("Player Shot Spawn").transform;
+		else{
+			setSpawnLocation(userTransform);
+		}
+
 		shotProperties.nextFire = 0f;	
+	}
+
+	//sets the location that shots will spawn from
+	public void setSpawnLocation(Transform weaponSpawnLocation){
+		shotProperties.shotSpawn = weaponSpawnLocation;
 	}
 
 	void ungatedShoot()

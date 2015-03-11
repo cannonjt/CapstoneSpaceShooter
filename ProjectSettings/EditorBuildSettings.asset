@@ -7,3 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/xx_Scenes/Main.unity
+  - enabled: 1
+    path: Assets/Resources/Levels/Level1.unity
+  - enabled: 0
+    path: Assets/Resources/Levels/Level1.unity
