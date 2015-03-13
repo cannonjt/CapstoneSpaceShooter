@@ -28,13 +28,8 @@ public class EnemyProperties : MonoBehaviour {
 			if (!theThing.getDoH ())
 			{
 				//check if we're inv
-				if (invToPirece)
+				if (!invToPirece)
 				{
-					//don't do anything
-				}
-				else
-				{
-					//we got hit, take damage and become immune
 					takeDamage(theThing.getDamage());
 					invToPirece = true;
 					invLength = Time.time + 1;
@@ -47,6 +42,7 @@ public class EnemyProperties : MonoBehaviour {
 			}
 		}
 	}
+
 	void takeDamage(float damage)
 	{
 		health -= damage;
