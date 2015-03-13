@@ -30,6 +30,7 @@ public class FollowerBehavior : MonoBehaviour {
 		currentWep = (Weapon)Instantiate (currentWep);
 		currentWep.GetComponent<Weapon> ().setUp (gameObject);
 		currentWep.transform.parent = transform;
+
 		if (leader.tag == "Player") {
 				friendly = true;
 		} else
@@ -149,9 +150,5 @@ public class FollowerBehavior : MonoBehaviour {
 			rigidbody.AddForce (transform.forward * move.thrustSpeed);
 		}
 	}
-
-	void OnDestroy()
-	{
-		//Destroy (currentWep.gameObject);
-	}
+	
 }
