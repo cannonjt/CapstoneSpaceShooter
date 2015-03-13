@@ -15,6 +15,8 @@ public class Shotgun : Weapon {
 			                   + (i * degreeSegment), 0f)));
 			theBullet.GetComponent<Damager> ().setDamage(shotProperties.damage);
 			theBullet.GetComponent<Damager> ().setDoH(shotProperties.destroyOnHit);
+
+			organizeCategory(theBullet);
 		}
 
 	}

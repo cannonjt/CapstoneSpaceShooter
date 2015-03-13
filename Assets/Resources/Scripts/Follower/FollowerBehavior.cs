@@ -10,6 +10,7 @@ public class moveSettings{
 	public float shootDist;        //distance to the target to start shooting
 	public float rotationSpeed;
 
+
 }
 
 public class FollowerBehavior : MonoBehaviour {
@@ -20,53 +21,68 @@ public class FollowerBehavior : MonoBehaviour {
 
 	private Transform target;		//what the follower wants to shoot at
 	private float distance;         //distance between entity and the target
-	private bool returning;
+	private bool returning;			//if the follower is returning to its leader
+	private bool friendly;
 
 	// Use this for initialization
 	void Start () {
 		returning = true;
 		currentWep = (Weapon)Instantiate (currentWep);
 		currentWep.GetComponent<Weapon> ().setUp (gameObject);
+		currentWep.transform.parent = transform;
+		if (leader.tag == "Player") {
+				friendly = true;
+		} else
+				friendly = false;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		float howFarFromLeader = getDistance(leader);
+		if (leader != null) {
+
+				float howFarFromLeader = getDistance (leader);
 
 
-		//seek a target if not returning to leader and not too far away
-		if(returning == false && howFarFromLeader <= move.maxRange) {
+				//seek a target if not returning to leader and not too far away
+				if (returning == false && howFarFromLeader <= move.maxRange) {
 
-			GameObject tempEnemy;
-			tempEnemy = FindClosestEnemy();
+						GameObject tempEnemy;
+						if (friendly) {
+								tempEnemy = FindClosestEnemy ();
+						} else
+								tempEnemy = GameObject.FindGameObjectWithTag ("Player");
 
+						if (tempEnemy != null) {
+								target = tempEnemy.transform;
+								float howFarFromEnemy = getDistance (target);
 
+								if (howFarFromEnemy < move.maxRange) {
+										//enemy is within the max range
+										moveTowards (target);
 
+										if (howFarFromEnemy <= move.shootDist) {
 
-			if(tempEnemy != null)
-			{
-				target = tempEnemy.transform;
-				float howFarFromEnemy = getDistance (target);
-
-				if( howFarFromEnemy < move.maxRange )
-				{
-					//enemy is within the max range
-					moveTowards(target);
-
-					if(howFarFromEnemy <= move.shootDist)
-					{
-						//shoot at enemy
-						currentWep.shoot();
-					}
-				} else returnHome();
-			} else returnHome();
-		}
-		else //ship is returning to leader
+												if (friendly)
+														rigidbody.velocity = Vector3.zero;
+												//shoot at enemy
+												currentWep.shoot ();
+										}
+								} else
+										returnHome ();
+						} else
+								returnHome ();
+				} else { //ship is returning to leader
+						returning = true;
+						returnHome ();
+				}
+		} else
 		{
-			returning = true;
-			returnHome();
+			//follower is offline
+			gameObject.renderer.material.color = Color.gray;
 		}
+				
 	}
 
 	//commands the follower to return to the player
@@ -132,5 +148,10 @@ public class FollowerBehavior : MonoBehaviour {
 			
 			rigidbody.AddForce (transform.forward * move.thrustSpeed);
 		}
+	}
+
+	void OnDestroy()
+	{
+		//Destroy (currentWep.gameObject);
 	}
 }

@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
 		Vector3 PlayerPOS = player.transform.transform.position;
 		GameObject.Find("Main Camera").transform.position = new Vector3(PlayerPOS.x, 10, PlayerPOS.z);
 

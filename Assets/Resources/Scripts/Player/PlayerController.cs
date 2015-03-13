@@ -25,9 +25,10 @@ public class PlayerController : MonoBehaviour {
 
 		playerShotSpawn = transform.GetChild (0).GetChild (0).GetChild (0);
 		thruster = GameObject.Find ("engines_player");
-		currentWep = (Weapon)Instantiate (currentWep);
+		currentWep = (Weapon)Instantiate (defaultWep);
 		currentWep.GetComponent<Weapon> ().setUp (gameObject);
 		currentWep.GetComponent<Weapon> ().setSpawnLocation (playerShotSpawn);
+		currentWep.transform.parent = transform;
 
 	}
 	void FixedUpdate()
@@ -40,9 +41,6 @@ public class PlayerController : MonoBehaviour {
 
 		float shootHorizontal = Input.GetAxis ("FireHorizontal");
 		float shootVertical = Input.GetAxis ("FireVertical");
-		float shootHorizontalHeld = Input.GetAxisRaw ("FireHorizontal");
-		float shootVerticalHeld = Input.GetAxisRaw ("FireVertical");
-
 
 		//clamp the ship in a specific region
 		rigidbody.position = new Vector3
@@ -71,13 +69,8 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		//gun rotation
-		if (shootHorizontalHeld != 0f || shootVerticalHeld != 0f) {
 
-			rotateGun(shootHorizontal, shootVertical);
-
-		}
-
-
+		rotateGun (shootHorizontal, shootVertical);
 
 	}
 
@@ -108,17 +101,27 @@ public class PlayerController : MonoBehaviour {
 
 	void rotateGun(float horiz, float vert){
 		//create targetDirection
-		Vector3 targetDirection = new Vector3 (horiz, 0f, vert);
-		
-		//ensure it is not attempting to rotate when not needed
-		if( !targetDirection.Equals(Vector3.zero)){
-			
-			//create a quaternion rotation based on vector (independent of camera rotation)
-			//rotating around the y axis
-			Quaternion targetRotation = Quaternion.LookRotation (targetDirection, Vector3.up);
+		Vector3 targetDirection;
 
-			//change the gun rotation to reflect
-			transform.GetChild (0).rotation = targetRotation;
+
+		if (horiz == 0f && vert == 0f) { //player is not shooting
+			//gun rotation is slowly reset to player rotation
+			Quaternion gunRot = transform.GetChild (0).rotation;
+			transform.GetChild (0).rotation = 
+				Quaternion.RotateTowards(gunRot, transform.rotation, (0.5f * turnSpeed) * Time.deltaTime);
+		} else { //player is shooting in a direction
+				targetDirection = new Vector3 (horiz, 0f, vert);
+
+				//ensure it is not attempting to rotate when not needed
+				if (!targetDirection.Equals (Vector3.zero)) {
+	
+						//create a quaternion rotation based on vector (independent of camera rotation)
+						//rotating around the y axis
+						Quaternion targetRotation = Quaternion.LookRotation (targetDirection, Vector3.up);
+
+						//change the gun rotation to reflect
+						transform.GetChild (0).rotation = targetRotation;
+				}
 		}
 	}
 
@@ -129,6 +132,7 @@ public class PlayerController : MonoBehaviour {
 		currentWep = (Weapon)Instantiate (newWep);
 		currentWep.GetComponent<Weapon> ().setUp (gameObject);
 		currentWep.GetComponent<Weapon> ().setSpawnLocation (playerShotSpawn);
+		currentWep.transform.parent = transform;
 	}
 
 	//sets the current weapon to the default
@@ -138,6 +142,7 @@ public class PlayerController : MonoBehaviour {
 		currentWep = (Weapon)Instantiate (defaultWep);
 		currentWep.GetComponent<Weapon> ().setUp (gameObject);
 		currentWep.GetComponent<Weapon> ().setSpawnLocation (playerShotSpawn);
+		currentWep.transform.parent = transform;
 	}
 
 

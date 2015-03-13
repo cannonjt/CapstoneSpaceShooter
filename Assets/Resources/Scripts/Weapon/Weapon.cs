@@ -54,6 +54,8 @@ public class Weapon : MonoBehaviour {
 		             shotProperties.shotSpawn.rotation);
 		theBullet.GetComponent<Damager> ().setDamage(shotProperties.damage);
 		theBullet.GetComponent<Damager> ().setDoH(shotProperties.destroyOnHit);
+		organizeCategory (theBullet);
+
 	}
 	
 	//call setUp before trying to use weapon
@@ -84,6 +86,11 @@ public class Weapon : MonoBehaviour {
 			spawnBullet ();
 			audio.Play ();
 		}
+	}
+
+	public void organizeCategory(GameObject theBullet)
+	{
+		theBullet.transform.parent = GameObject.Find ("Projectiles").transform;
 	}
 	
 }

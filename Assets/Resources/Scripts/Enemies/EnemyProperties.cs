@@ -11,9 +11,12 @@ public class EnemyProperties : MonoBehaviour {
 	public bool invToPirece;
 	[HideInInspector]
 	public float invLength;
+
+	private FollowerBehavior followerInfo;
 	void Start()
 	{
 		health = maxHealth;
+
 	}
 	void OnTriggerEnter(Collider other) 
 	{
@@ -48,8 +51,8 @@ public class EnemyProperties : MonoBehaviour {
 	{
 		health -= damage;
 		if (health <= 0) {
-				Destroy (gameObject);
-				Instantiate (explosion, transform.position, transform.rotation);
+			Destroy (gameObject);
+			Instantiate (explosion, transform.position, transform.rotation);
 		} else {
 			StartCoroutine(flashRed());
 		}
