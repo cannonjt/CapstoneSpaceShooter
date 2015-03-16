@@ -5,13 +5,15 @@ public class SpawnEnemies : MonoBehaviour {
 	public float spawnCooldown;
 	public Boundary spawnBound;
 	public GameObject spawningShip;
+	public GameObject spawningWeapon;
 	public int waveSize;
 	
 	private float spawnTimer;
+	private int wave;
 
 	// Use this for initialization
 	void Start () {
-
+		wave = 0;
 	}
 	
 	// Update is called once per frame
@@ -24,6 +26,7 @@ public class SpawnEnemies : MonoBehaviour {
 			if(Time.time > spawnTimer)
 			{
 				spawn();
+				wave++;
 			}
 
 		} else {
@@ -46,5 +49,17 @@ public class SpawnEnemies : MonoBehaviour {
 			newEnemy.rigidbody.position = spawnPos;
 			newEnemy.GetComponent<TrackTo> ().target = player.transform;
 		}
+
+		if (wave % 2 == 0) {
+			GameObject newWeapon = (GameObject)Instantiate (spawningWeapon);
+				
+			Vector3 spawnPos = new Vector3 (
+				Random.Range (spawnBound.xMin, spawnBound.xMax), 
+				0.0f,
+				Random.Range (spawnBound.zMin, spawnBound.zMax)
+				);
+			newWeapon.rigidbody.position = spawnPos;
+		}
+
 	}
 }
