@@ -27,8 +27,11 @@ public class ShootPredictively : MonoBehaviour {
 			//change the shooter's rotation to reflect
 			rigidbody.MoveRotation (targetRotation);
 
-			//Quaternion targetRotation = Quaternion.Euler (IC.x, IC.y, IC.z);
-			//transform.rotation  = Quaternion.LookRotation (targetRotation, Vector3.up);
+			//Transform shotSpawn = transform.GetChild(0);
+			//shotSpawn.rotation = Quaternion.AngleAxis((transform.rotation.y + Mathf.PingPong(Time.time, 90) - 45f), Vector3.up);
+			//shotSpawn.rotation = Quaternion.Euler (new Vector3(transform.rotation.x, (transform.rotation.y +
+			                                 //Mathf.PingPong(Time.time, 120) - 120f), transform.rotation.z));
+			//http://answers.unity3d.com/questions/321323/how-to-give-your-enemy-gun-inaccuracy.html
 
 			currentWep.shoot ();
 		}
