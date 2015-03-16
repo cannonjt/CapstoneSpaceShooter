@@ -43,7 +43,7 @@ public class EnemyProperties : MonoBehaviour {
 		}
 	}
 
-	void takeDamage(float damage)
+	public void takeDamage(float damage)
 	{
 		health -= damage;
 		if (health <= 0) {

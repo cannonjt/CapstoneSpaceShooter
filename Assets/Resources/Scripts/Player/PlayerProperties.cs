@@ -52,9 +52,28 @@ public class PlayerProperties : MonoBehaviour {
 			Destroy (other.gameObject);
 		
 		}
+
 	}
 
-	void takeDamage(float damage)
+	void OnCollisionEnter(Collision otherCollision){
+
+		Collider other = otherCollision.collider;
+		if(other.tag == "Asteroid"){
+			print ("ouch, IM HIT!!!!!");
+			GameObject asteroid = other.gameObject;
+			Damager asteroidDamager = asteroid.GetComponent<Damager>();
+			
+			takeDamage (asteroidDamager.getDamage());
+			
+			if(asteroidDamager.getDoH()){
+				Destroy (other.gameObject);
+				GameObject aExplosion =(GameObject)Resources.Load("Prefabs/VFX/Explosions/explosion_asteroid");
+				Instantiate (aExplosion, other.transform.position, other.transform.rotation);
+			}
+		}
+	}
+
+	public void takeDamage(float damage)
 	{
 		lastDamage = Time.time;
 

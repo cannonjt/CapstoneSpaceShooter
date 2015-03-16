@@ -2,8 +2,8 @@
 using System.Collections;
 [System.Serializable]
 public class Damager : MonoBehaviour {
-	private float damage;
-	private bool destroyOnHit;
+	public float damage;
+	public bool destroyOnHit;
 
 	public void setDamage(float dmg)
 	{

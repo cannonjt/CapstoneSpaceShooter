@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour {
 		//ship rotation
 		if (horizontalHeld != 0f || verticalHeld != 0f) {
 			//movement keys held, calculate rotations and turn on thruster
+
 			Rotate (moveHorizontal, moveVertical);
 			thruster.SetActive (true);
 
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			//turn off thruster if not moving
 			thruster.SetActive (false);
+			rigidbody.angularVelocity = Vector3.zero;
 		}
 
 		//gun rotation
