@@ -46,6 +46,13 @@ public class PlayerProperties : MonoBehaviour {
 		{
 			sSlider.value = shield;
 		}
+		if (health <= 0) {
+			hSlider.value = 0;
+		}
+		else
+		{
+			hSlider.value = health;
+		}
 	}
 
 	void LateUpdate()
@@ -104,10 +111,6 @@ public class PlayerProperties : MonoBehaviour {
 				hSlider.value = 0;
 				gameObject.SetActive (false);
 				Instantiate (explosion, transform.position, transform.rotation);
-			}
-			else
-			{
-				hSlider.value = health;
 			}
 		}
 
