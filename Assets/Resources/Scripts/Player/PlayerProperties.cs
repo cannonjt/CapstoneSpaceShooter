@@ -5,6 +5,7 @@ using System.Collections;
 public class PlayerProperties : MonoBehaviour {
 
 	public Slider hSlider;
+	public Slider sSlider;
 	public float health;
 	public float maxHealth;
 	public float shield;
@@ -37,6 +38,13 @@ public class PlayerProperties : MonoBehaviour {
 			if(newShield > maxShield)shield = maxShield;
 			else shield = newShield;
 
+		}
+		if (shield <= 0) {
+			sSlider.value = 0;
+		}
+		else
+		{
+			sSlider.value = shield;
 		}
 	}
 
