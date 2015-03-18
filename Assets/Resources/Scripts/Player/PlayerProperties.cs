@@ -70,8 +70,8 @@ public class PlayerProperties : MonoBehaviour {
 	void OnCollisionEnter(Collision otherCollision){
 
 		Collider other = otherCollision.collider;
-		if(other.tag == "Asteroid"){
-			print ("ouch, IM HIT!!!!!");
+		if(other.tag == "Asteroid" || other.tag == "Enemy"){
+			print ("ouch, IM HIT!!!!!" + other.tag);
 			GameObject asteroid = other.gameObject;
 			Damager asteroidDamager = asteroid.GetComponent<Damager>();
 			

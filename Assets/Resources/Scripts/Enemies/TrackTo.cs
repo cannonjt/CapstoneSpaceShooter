@@ -56,7 +56,7 @@ public class TrackTo : MonoBehaviour {
 					} else {
 						rigidbody.AddForce (transform.forward * thrustSpeed);
 					}
-				}
+				} else { rigidbody.angularVelocity = Vector3.zero; }
 			}
 		}
 	}
