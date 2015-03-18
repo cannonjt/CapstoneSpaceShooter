@@ -39,7 +39,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: bf75b984df8a84987bcf3a8bf6e2862d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: .75
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -112,7 +112,6 @@ MonoBehaviour:
     nextFire: 0
     nextBurst: 0
     shotSpawn: {fileID: 0}
-  burstCounter: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

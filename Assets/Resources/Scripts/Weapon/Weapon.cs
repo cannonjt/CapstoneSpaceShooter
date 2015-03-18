@@ -16,6 +16,11 @@ public class Weapon : MonoBehaviour {
 				else
 						burst = false;
 	}
+
+	void Update()
+	{
+		if(user != null)transform.position = user.transform.position;
+	}
 	public virtual void shoot()
 	{
 		//print (shotProperties.shotSpawn);
@@ -84,9 +89,11 @@ public class Weapon : MonoBehaviour {
 		Transform userTransform = user.transform;
 		if (userTransform.childCount > 0) {
 			setSpawnLocation(userTransform.GetChild(0).transform);
+			transform.position = userTransform.GetChild(0).transform.position;
 		}
 		else{
 			setSpawnLocation(userTransform);
+			transform.position = userTransform.position;
 		}
 
 		shotProperties.nextFire = 0f;	

@@ -39,7 +39,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: bf75b984df8a84987bcf3a8bf6e2862d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: .75
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -100,14 +100,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotProperties:
     shot: {fileID: 111234, guid: 0411d7060645a0547b3629f73309a4de, type: 2}
+    ammo: -5
+    damage: 5
     fireRate: .5
     numberOfShots: 1
     firingAngle: 90
+    burst: 0
+    burstWait: 0
     range: 0
-    damage: 5
     destroyOnHit: 1
-    ammo: -5
     nextFire: 0
+    nextBurst: 0
     shotSpawn: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
