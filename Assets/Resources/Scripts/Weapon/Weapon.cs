@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Weapon : MonoBehaviour {
@@ -19,7 +20,17 @@ public class Weapon : MonoBehaviour {
 
 	void Update()
 	{
-		if(user != null)transform.position = user.transform.position;
+		if (user != null) 
+		{
+			transform.position = user.transform.position;
+			float ammu = shotProperties.ammo;
+			Text aDisp = GameObject.Find ("AmmoText").GetComponent<Text> ();
+			if (user.tag == "Player" && ammu != -5 && ammu > 0) {
+					aDisp.text = ammu.ToString ();
+			} else {
+					aDisp.text = "";
+			}
+		}
 	}
 	public virtual void shoot()
 	{
