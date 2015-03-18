@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerProperties : MonoBehaviour {
 
+	public Slider hSlider;
 	public float health;
 	public float maxHealth;
 	public float shield;
@@ -91,8 +93,13 @@ public class PlayerProperties : MonoBehaviour {
 			}
 
 			if (health <= 0) {
+				hSlider.value = 0;
 				gameObject.SetActive (false);
 				Instantiate (explosion, transform.position, transform.rotation);
+			}
+			else
+			{
+				hSlider.value = health;
 			}
 		}
 
@@ -112,4 +119,5 @@ public class PlayerProperties : MonoBehaviour {
 		yield return new WaitForSeconds(0.05f);
 		shieldTrans.gameObject.SetActive (false);
 	}
+	
 }
