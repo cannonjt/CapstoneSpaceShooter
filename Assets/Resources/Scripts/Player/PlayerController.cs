@@ -10,7 +10,7 @@ public class Boundary
 public class PlayerController : MonoBehaviour {
 	
 	public Boundary boundary;
-	public float tilt;
+	//public float tilt;
 	public float turnSpeed;
 	public float thrustSpeed;
 	public float maxSpeed;

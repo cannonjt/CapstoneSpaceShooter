@@ -5,10 +5,16 @@ public class Weapon : MonoBehaviour {
 
 	public ShotProperties shotProperties;
 	private GameObject user;
+	private int burstCounter;
+	private bool burst;
 	
 	void Awake()
 	{
-
+		burstCounter = 0;
+		if (shotProperties.burst > 0)
+						burst = true;
+				else
+						burst = false;
 	}
 	public virtual void shoot()
 	{
@@ -17,29 +23,39 @@ public class Weapon : MonoBehaviour {
 
 			if ((Input.GetButton ("Fire1") || Input.GetAxisRaw ("FireHorizontal") != 0 
 			     || Input.GetAxisRaw("FireVertical") != 0) && Time.time > shotProperties.nextFire) {
-					shotProperties.nextFire = Time.time + shotProperties.fireRate;
-					if (shotProperties.ammo == -5)
-					{
-						//default weapon has -5 ammo, so it doesn't use ammo
-						spawnBullet ();
-						audio.Play ();
-					}
-					else
-					{
-						//we have a weapon that shoots ammo
-						//if it has 0 ammo left, switch to normal weapon
-						if (shotProperties.ammo <= 0)
-						{
-							GameObject player = GameObject.FindGameObjectWithTag ("Player");
-							PlayerController playerController = (PlayerController)player.GetComponent (typeof(PlayerController));
-							playerController.resetWeapon ();
+
+
+					if(burst && burstCounter >= shotProperties.burst){ //player shot all shots for burst
+						if(Time.time > shotProperties.nextBurst){ //time between bursts has happened
+							burstCounter = 0; //reset the burst
 						}
-						//else subtract 1 bullet
-						else
+					}
+					else{
+						shotProperties.nextFire = Time.time + shotProperties.fireRate;
+						if(burst) shotProperties.nextBurst = Time.time + shotProperties.burstWait;
+						if (shotProperties.ammo == -5) //check for unlimited ammo weapon
 						{
-							shotProperties.ammo--;
+							//default weapon has -5 ammo, so it doesn't use ammo
 							spawnBullet ();
 							audio.Play ();
+						}
+						else
+						{
+							//we have a weapon that shoots ammo
+							//if it has 0 ammo left, switch to normal weapon
+							if (shotProperties.ammo <= 0)
+							{
+								GameObject player = GameObject.FindGameObjectWithTag ("Player");
+								PlayerController playerController = (PlayerController)player.GetComponent (typeof(PlayerController));
+								playerController.resetWeapon ();
+							}
+							//else subtract 1 bullet
+							else
+							{
+								shotProperties.ammo--;
+								spawnBullet ();
+								audio.Play ();
+							}
 						}
 					}
 				}
@@ -49,6 +65,8 @@ public class Weapon : MonoBehaviour {
 
 	public virtual void spawnBullet()
 	{
+		if (burst) burstCounter++; //another shot in the burst
+
 		//generates a Bullet
 		GameObject theBullet = (GameObject)Instantiate (shotProperties.shot, shotProperties.shotSpawn.position,
 		             shotProperties.shotSpawn.rotation);
@@ -81,10 +99,18 @@ public class Weapon : MonoBehaviour {
 
 	void ungatedShoot()
 	{
-		if (Time.time > shotProperties.nextFire) {
-			shotProperties.nextFire = Time.time + shotProperties.fireRate;
-			spawnBullet ();
-			audio.Play ();
+		if(burst && burstCounter >= shotProperties.burst){ //shot all shots for burst
+			if(Time.time > shotProperties.nextBurst){ //time between bursts has happened
+				burstCounter = 0; //reset the burst
+			}
+		}
+		else{
+			if (Time.time > shotProperties.nextFire) {
+				if(burst) shotProperties.nextBurst = Time.time + shotProperties.burstWait;
+				shotProperties.nextFire = Time.time + shotProperties.fireRate;
+				spawnBullet ();
+				audio.Play ();
+			}
 		}
 	}
 
@@ -92,5 +118,13 @@ public class Weapon : MonoBehaviour {
 	{
 		theBullet.transform.parent = GameObject.Find ("Projectiles").transform;
 	}
+
+	/*
+	public IEnumerator burstShoot(){
+		while (burstCounter <= shotProperties.burst) {
+
+		}
+	}
+	*/
 	
 }

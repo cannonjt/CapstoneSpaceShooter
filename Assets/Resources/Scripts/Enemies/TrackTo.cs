@@ -22,39 +22,40 @@ public class TrackTo : MonoBehaviour {
 	}
 	
 	void Update(){
-		
-		float howFar = getDistance();
-		
-		if(howFar <= maxDist) {
-			
-			//rotates the enemy ship to the player
-			//from: http://answers.unity3d.com/questions/207505/following-ai-similar-to-snake-game.html
-			Vector3 track = target.position - transform.position;
-			
-			Quaternion wantDir = Quaternion.LookRotation( track, Vector3.up ); 
-			Quaternion newRotation = Quaternion.RotateTowards(rigidbody.rotation, wantDir, 60*Time.deltaTime);
-			
-			//look in the direction of the player
-			rigidbody.MoveRotation (newRotation);
-			
-			//moves to the player 
-			//add thrust in the direction of movement
-			if (rigidbody.velocity.magnitude < chaseSpeed && howFar >= minDist) {
-				checkSight();
-				if(objectDetected == true){
-					//avoid running in to it.
-					//Vector3 Angle = new Vector3(-obstacleAngle* 4.0f ,0, System.Math.Abs(obstacleAngle));
-					//Vector3 Where = Angle - transform.position; 
-					//Quaternion wantDirObstacle = Quaternion.LookRotation(Where, Vector3.up ); 
-					//Quaternion newRotationObstacle = Quaternion.RotateTowards(rigidbody.rotation, wantDirObstacle, 60*Time.deltaTime);
-					//rigidbody.MoveRotation (newRotationObstacle);
-					//transform.Rotate(0,-obstacleAngle* 3.0f,0);
-					transform.Rotate(0,(-obstacleAngle * 3.0f),0);
-					rigidbody.AddForce (transform.forward * thrustSpeed);
-					//print ("eek" + obstacleAngle);
-				}
-				else{
-					rigidbody.AddForce (transform.forward * thrustSpeed);
+		if (target != null) {
+
+			float howFar = getDistance ();
+
+			if (howFar <= maxDist) {
+
+				//rotates the enemy ship to the player
+				//from: http://answers.unity3d.com/questions/207505/following-ai-similar-to-snake-game.html
+				Vector3 track = target.position - transform.position;
+
+				Quaternion wantDir = Quaternion.LookRotation (track, Vector3.up); 
+				Quaternion newRotation = Quaternion.RotateTowards (rigidbody.rotation, wantDir, 60 * Time.deltaTime);
+
+				//look in the direction of the player
+				rigidbody.MoveRotation (newRotation);
+
+				//moves to the player 
+				//add thrust in the direction of movement
+				if (rigidbody.velocity.magnitude < chaseSpeed && howFar >= minDist) {
+					checkSight ();
+					if (objectDetected == true) {
+							//avoid running in to it.
+							//Vector3 Angle = new Vector3(-obstacleAngle* 4.0f ,0, System.Math.Abs(obstacleAngle));
+							//Vector3 Where = Angle - transform.position; 
+							//Quaternion wantDirObstacle = Quaternion.LookRotation(Where, Vector3.up ); 
+							//Quaternion newRotationObstacle = Quaternion.RotateTowards(rigidbody.rotation, wantDirObstacle, 60*Time.deltaTime);
+							//rigidbody.MoveRotation (newRotationObstacle);
+							//transform.Rotate(0,-obstacleAngle* 3.0f,0);
+							transform.Rotate (0, (-obstacleAngle * 3.0f), 0);
+							rigidbody.AddForce (transform.forward * thrustSpeed);
+							//print ("eek" + obstacleAngle);
+					} else {
+						rigidbody.AddForce (transform.forward * thrustSpeed);
+					}
 				}
 			}
 		}

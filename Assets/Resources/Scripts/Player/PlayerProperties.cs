@@ -9,6 +9,7 @@ public class PlayerProperties : MonoBehaviour {
 	public float maxShield;
 	public float shieldRechargeTime;
 	public float shieldRechargeRate;
+	public float invPeriod;//period where the player is invicible after taking damage
 
 	private float lastDamage;
 	private GameObject explosion;
@@ -22,6 +23,7 @@ public class PlayerProperties : MonoBehaviour {
 		explosion = (GameObject)Resources.Load ("Prefabs/VFX/Explosions/explosion_player");
 
 		shieldObject = transform.GetChild(2).gameObject;
+		lastDamage = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -75,24 +77,23 @@ public class PlayerProperties : MonoBehaviour {
 
 	public void takeDamage(float damage)
 	{
-		lastDamage = Time.time;
+		if (Time.time >= lastDamage + invPeriod) {
+			lastDamage = Time.time;
 
-		//damage shield first, then health
-		if (damage > shield) {
+			//damage shield first, then health
+			if (damage > shield) {
 				health -= (damage - shield);
 				shield = 0;
-				StartCoroutine(flashRed());
-		} 
-		else
-		{
-			shield -= damage;
-			StartCoroutine(flashShield());
-		}
+				StartCoroutine (flashRed ());
+			} else {
+				shield -= damage;
+				StartCoroutine (flashShield ());
+			}
 
-		if (health <= 0) {
-			gameObject.SetActive(false);
-			Instantiate (explosion, transform.position, transform.rotation);
-			print ("Dead");
+			if (health <= 0) {
+				gameObject.SetActive (false);
+				Instantiate (explosion, transform.position, transform.rotation);
+			}
 		}
 
 	}

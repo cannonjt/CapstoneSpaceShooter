@@ -48,7 +48,8 @@ public class EnemyProperties : MonoBehaviour {
 		health -= damage;
 		if (health <= 0) {
 			Destroy (gameObject);
-			Instantiate (explosion, transform.position, transform.rotation);
+			if(explosion != null)
+				Instantiate (explosion, transform.position, transform.rotation);
 		} else {
 			StartCoroutine(flashRed());
 		}
@@ -56,9 +57,12 @@ public class EnemyProperties : MonoBehaviour {
 
 	IEnumerator flashRed()
 	{
-		renderer.material.color = colors[0];
-		yield return new WaitForSeconds(0.05f);
-		renderer.material.color = colors[1];
+		if(colors.Length >= 2)
+		{
+			renderer.material.color = colors[0];
+			yield return new WaitForSeconds(0.05f);
+			renderer.material.color = colors[1];
+		}
 	}
 
 	void Update()

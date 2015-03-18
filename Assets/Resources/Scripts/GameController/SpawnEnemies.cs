@@ -47,7 +47,8 @@ public class SpawnEnemies : MonoBehaviour {
 			);
 
 			newEnemy.rigidbody.position = spawnPos;
-			newEnemy.GetComponent<TrackTo> ().target = player.transform;
+			if(player != null)
+				newEnemy.GetComponent<TrackTo> ().target = player.transform;
 		}
 
 		if (wave % 2 == 0) {
