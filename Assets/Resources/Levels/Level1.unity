@@ -114,6 +114,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5425208, guid: 57afba152bb1175489fe0280e28c3d1f, type: 2}
+      propertyPath: m_Mass
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57afba152bb1175489fe0280e28c3d1f, type: 2}
   m_RootGameObject: {fileID: 1093675978}
@@ -1567,6 +1571,7 @@ GameObject:
   - 114: {fileID: 180724960}
   - 54: {fileID: 180724959}
   - 114: {fileID: 180724965}
+  - 114: {fileID: 180724964}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1671,6 +1676,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1052982484}
   m_GameObject: {fileID: 180724957}
   m_Mesh: {fileID: 4300002, guid: d9808401c68af274a8edfbed3d1b53c7, type: 3}
+--- !u!114 &180724964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 180724957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a33305385d1cf04d9d6822929e2cc38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  destroyOnHit: 0
 --- !u!114 &180724965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7359,7 +7377,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 8664165}
   m_GameObject: {fileID: 1093675978}
   serializedVersion: 2
-  m_Mass: 5
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
