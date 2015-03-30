@@ -17,6 +17,7 @@ public class PlayerProperties : MonoBehaviour {
 	private float lastDamage;
 	private GameObject explosion;
 	private GameObject shieldObject;
+	private bool atMax;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +32,7 @@ public class PlayerProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		atMax = (health >= maxHealth);
 		//if shield is not maxed and shield cooldown is up
 		if(shield < maxShield && lastDamage <= (Time.time - shieldRechargeTime))
 		{
@@ -114,6 +116,19 @@ public class PlayerProperties : MonoBehaviour {
 			}
 		}
 
+	}
+
+	public void healFor(float healHealth)
+	{
+		if ((health + healHealth) > maxHealth)
+						health = maxHealth;
+				else
+						health += healHealth;
+	}
+
+	public bool getMax()
+	{
+		return atMax;
 	}
 
 	IEnumerator flashRed()

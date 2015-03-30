@@ -14,7 +14,7 @@ public class PickUp : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter(Collider other)
+	public virtual void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Player") {
 			doAction();

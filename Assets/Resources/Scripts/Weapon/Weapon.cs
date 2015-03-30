@@ -25,10 +25,13 @@ public class Weapon : MonoBehaviour {
 			transform.position = user.transform.position;
 			float ammu = shotProperties.ammo;
 			Text aDisp = GameObject.Find ("AmmoText").GetComponent<Text> ();
+			Image bulletIcon = GameObject.Find("BulletIcon").GetComponent<Image>();
 			if (user.tag == "Player" && ammu != -5 && ammu > 0) {
 					aDisp.text = ammu.ToString ();
+				bulletIcon.enabled = true;
 			} else {
 					aDisp.text = "";
+				bulletIcon.enabled = false;
 			}
 		}
 	}
