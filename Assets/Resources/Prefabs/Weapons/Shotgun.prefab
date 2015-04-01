@@ -46,9 +46,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -100,14 +100,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotProperties:
     shot: {fileID: 100002, guid: ddcae839a6418004e8ba4245a6d2bfd9, type: 2}
+    ammo: 50
+    damage: 10
     fireRate: .100000001
     numberOfShots: 5
     firingAngle: 40
+    burst: 0
+    burstWait: 0
     range: 0
-    damage: 10
     destroyOnHit: 1
-    ammo: 50
     nextFire: 12.2824907
+    nextBurst: 0
     shotSpawn: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

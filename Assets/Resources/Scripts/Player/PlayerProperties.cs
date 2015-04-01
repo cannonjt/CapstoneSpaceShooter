@@ -80,7 +80,7 @@ public class PlayerProperties : MonoBehaviour {
 
 		Collider other = otherCollision.collider;
 		if(other.tag == "Asteroid" || other.tag == "Enemy"){
-			print ("ouch, IM HIT!!!!!" + other.tag);
+			//print ("ouch, IM HIT!!!!!" + other.tag);
 			GameObject asteroid = other.gameObject;
 			Damager asteroidDamager = asteroid.GetComponent<Damager>();
 			

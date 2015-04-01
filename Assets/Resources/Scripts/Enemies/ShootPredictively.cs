@@ -6,12 +6,15 @@ public class ShootPredictively : MonoBehaviour {
 	public Rigidbody target;
 	public Weapon currentWep;
 	private float speed;
+	public Transform turretShotSpawn;
 
 
 	// Use this for initialization
 	void Start () {
 		currentWep = (Weapon)Instantiate (currentWep);
 		currentWep.GetComponent<Weapon> ().setUp (gameObject);
+		if (turretShotSpawn != null)
+						currentWep.GetComponent<Weapon> ().setSpawnLocation (turretShotSpawn);
 		speed = currentWep.GetComponent<Weapon> ().shotProperties.shot.GetComponent<Mover> ().speed;
 	}
 	
@@ -25,7 +28,8 @@ public class ShootPredictively : MonoBehaviour {
 			Quaternion targetRotation = Quaternion.LookRotation (IC, Vector3.up);
 
 			//change the shooter's rotation to reflect
-			rigidbody.MoveRotation (targetRotation);
+			//rigidbody.MoveRotation (targetRotation);
+			transform.rotation = targetRotation;
 
 			//Transform shotSpawn = transform.GetChild(0);
 			//shotSpawn.rotation = Quaternion.AngleAxis((transform.rotation.y + Mathf.PingPong(Time.time, 90) - 45f), Vector3.up);

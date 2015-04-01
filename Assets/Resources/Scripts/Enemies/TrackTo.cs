@@ -35,6 +35,7 @@ public class TrackTo : MonoBehaviour {
 				Quaternion wantDir = Quaternion.LookRotation (track, Vector3.up); 
 				Quaternion newRotation = Quaternion.RotateTowards (rigidbody.rotation, wantDir, 60 * Time.deltaTime);
 
+
 				//look in the direction of the player
 				rigidbody.MoveRotation (newRotation);
 
