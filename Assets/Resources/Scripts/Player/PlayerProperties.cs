@@ -103,6 +103,8 @@ public class PlayerProperties : MonoBehaviour {
 			if (damage > shield) {
 				health -= (damage - shield);
 				shield = 0;
+				//fixing a quirk with slider, since it won't call update
+				sSlider.value = 0;
 				StartCoroutine (flashRed ());
 			} else {
 				shield -= damage;

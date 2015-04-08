@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotProperties:
     shot: {fileID: 126740, guid: 0b11079b62649d043a8adf5f49be40a8, type: 2}
-    ammo: 50
+    ammo: -5
     damage: 10
     fireRate: 1
     numberOfShots: 5

@@ -101,7 +101,7 @@ MonoBehaviour:
   shotProperties:
     shot: {fileID: 126740, guid: 4f16f06f79022c44cabf9534e3a517ba, type: 2}
     ammo: -5
-    damage: 20
+    damage: 50
     fireRate: 4
     numberOfShots: 1
     firingAngle: 90
