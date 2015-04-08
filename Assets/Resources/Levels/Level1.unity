@@ -1986,7 +1986,7 @@ GameObject:
   - 4: {fileID: 218920546}
   - 114: {fileID: 218920547}
   m_Layer: 0
-  m_Name: Shot Spawn
+  m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2004,7 +2004,7 @@ Transform:
   m_Children:
   - {fileID: 690827181}
   m_Father: {fileID: 676019784}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &218920547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,7 +2225,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 676019784}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!23 &318891755
 Renderer:
   m_ObjectHideFlags: 0
@@ -5211,6 +5211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64be5a7cd5c5c324cad6720832934a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentWep: {fileID: 11497854, guid: 7ae792259c968484fa006867a9cdfa40, type: 2}
+  shootDist: 15
 --- !u!114 &676019780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5270,6 +5272,7 @@ Transform:
   m_LocalPosition: {x: 5.42000008, y: 0, z: .469999999}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
+  - {fileID: 1892300391}
   - {fileID: 218920546}
   - {fileID: 318891754}
   m_Father: {fileID: 0}
@@ -11600,6 +11603,33 @@ Transform:
   m_Children:
   - {fileID: 1358843085}
   m_Father: {fileID: 1251340578}
+  m_RootOrder: 0
+--- !u!1 &1892300390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1892300391}
+  m_Layer: 0
+  m_Name: Boss Shot Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1892300391
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1892300390}
+  m_LocalRotation: {x: -2.18556941e-08, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .100000001, y: -0, z: 7.51000023}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 676019784}
   m_RootOrder: 0
 --- !u!1001 &1895477422
 Prefab:
