@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containedWep: {fileID: 11400000, guid: 924ab88b5a3437143bdf6022b66359e8, type: 2}
+  icon: {fileID: 21300000, guid: 7a8a80fc2e6ffdb4fbfb20e05f5cdfaa, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

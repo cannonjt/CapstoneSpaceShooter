@@ -133,9 +133,15 @@ public class PlayerProperties : MonoBehaviour {
 
 	IEnumerator flashRed()
 	{
+		Image red = GameObject.Find("Redness").GetComponent<Image>();
+		Color c = red.color;
+		c.a = .5f;
+		red.color = c;
 		renderer.material.color = Color.red;
 		yield return new WaitForSeconds(0.05f);
 		renderer.material.color = Color.white;
+		c.a = 0;
+		red.color = c;
 	}
 
 	IEnumerator flashShield()
