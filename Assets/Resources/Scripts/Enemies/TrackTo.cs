@@ -16,9 +16,10 @@ public class TrackTo : MonoBehaviour {
 	public float lengthOfSight = 2f;            // Distance in front of the entity that it can "see"
 	public bool objectDetected = false;	   // True if the entity "sees" an object and needs to change course
 	public float obstacleAngle;
+	
 
 	void Start(){
-		
+
 	}
 	
 	void Update(){
