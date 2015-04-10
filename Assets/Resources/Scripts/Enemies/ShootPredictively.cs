@@ -48,22 +48,32 @@ public class ShootPredictively : MonoBehaviour {
 	//Adapted from Bunny83's post at: http://answers.unity3d.com/questions/296949/how-to-calculate-a-position-to-fire-at.html
 	public static Vector3 CalculateInterceptCourse(Vector3 aTargetPos, Vector3 aTargetSpeed, Vector3 aInterceptorPos, float aInterceptorSpeed)
 	{
-		Vector3 targetDir = aTargetPos - aInterceptorPos;
-		
-		float iSpeed2 = aInterceptorSpeed * aInterceptorSpeed;
-		float tSpeed2 = aTargetSpeed.sqrMagnitude;
-		float fDot1 = Vector3.Dot(targetDir, aTargetSpeed);
-		float targetDist2 = targetDir.sqrMagnitude;
-		float d = (fDot1 * fDot1) - targetDist2 * (tSpeed2 - iSpeed2);
+		Vector3 targetDir = aTargetPos - aInterceptorPos; //vector to the player ship
+		//print ("TargetDir: " + targetDir);
+
+		float iSpeed2 = aInterceptorSpeed * aInterceptorSpeed; //bullet speed squared (two floats)
+		float tSpeed2 = aTargetSpeed.sqrMagnitude; //ship speed squared (two vector3s)
+
+		float fDot1 = Vector3.Dot(targetDir, aTargetSpeed); //adjustment value (higher equals more potential adjustment)
+		//print ("Speed: " + aTargetSpeed);
+		//print (fDot1);
+		float targetDist2 = targetDir.sqrMagnitude; //from bullet to ship squared
+
+		float d = (fDot1 * fDot1) //bullets ability 
+			- targetDist2 * (tSpeed2 - iSpeed2); //player's capability to escape
 		if (d < 0.1f) {  // negative == no possible course because the interceptor isn't fast enough
 			return aTargetPos  - aInterceptorPos;
 			//return Vector3.zero;
 
 		}
 		float sqrt = Mathf.Sqrt(d);
-		float S1 = (-fDot1 - sqrt) / targetDist2;
-		float S2 = (-fDot1 + sqrt) / targetDist2;
-		
+
+		float S1 = (-fDot1 - sqrt) / targetDist2; //adjustment to vector
+		float S2 = (-fDot1 + sqrt) / targetDist2; //secondary adjustment to vector
+
+
+		//pick the vector with larger adjustment multiplication
+		//apply it to vector to player + vector of player movemtent
 		if (S1 < 0.0001f)
 		{
 			if (S2 < 0.0001f)
