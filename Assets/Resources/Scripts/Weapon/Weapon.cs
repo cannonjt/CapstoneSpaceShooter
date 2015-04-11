@@ -29,7 +29,7 @@ public class Weapon : MonoBehaviour {
 			if (user.tag == "Player" && ammu != -5 && ammu > 0) {
 					aDisp.text = ammu.ToString ();
 				bulletIcon.enabled = true;
-			} else {
+			} else if (user.tag == "Player"){
 					aDisp.text = "";
 				bulletIcon.enabled = false;
 			}
