@@ -5002,7 +5002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 200
+  maxHealth: 100
   explosion: {fileID: 0}
   colors: []
   invToPirece: 0
