@@ -6,9 +6,12 @@ public class EnemyShootBehaviour : MonoBehaviour {
 	public Weapon currentWepLeft;
 	public Weapon currentWepRight;
 	public float shootDist;
+	public float nextCheck;
+	public float fireRate;
 
 	// Use this for initialization
 	void Start () {
+		nextCheck = 0;
 		currentWepLeft = (Weapon)Instantiate (currentWepLeft);
 		currentWepLeft.GetComponent<Weapon> ().setUp (gameObject);
 		currentWepLeft.transform.parent = transform;
@@ -18,11 +21,20 @@ public class EnemyShootBehaviour : MonoBehaviour {
 		Transform rightSpawn = transform.GetChild (1);
 		currentWepRight.GetComponent<Weapon> ().setSpawnLocation (rightSpawn);
 		currentWepRight.transform.parent = transform;
+
+		fireRate = currentWepRight.shotProperties.fireRate;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		currentWepLeft.GetComponent<Weapon> ().shoot();
-		currentWepRight.GetComponent<Weapon> ().shoot();
+		if (Time.time > nextCheck) {
+			int shoot = Random.Range (0,10);
+
+			if (shoot > 4) {
+				currentWepLeft.GetComponent<Weapon> ().shoot ();
+				currentWepRight.GetComponent<Weapon> ().shoot ();
+			}
+			nextCheck += fireRate;
+		}
 	}
 }
