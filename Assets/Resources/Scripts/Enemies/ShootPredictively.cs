@@ -62,7 +62,7 @@ public class ShootPredictively : MonoBehaviour {
 		float d = (fDot1 * fDot1) //bullets ability 
 			- targetDist2 * (tSpeed2 - iSpeed2); //player's capability to escape
 		if (d < 0.1f) {  // negative == no possible course because the interceptor isn't fast enough
-			return aTargetPos  - aInterceptorPos;
+			return targetDir;
 			//return Vector3.zero;
 
 		}
@@ -79,7 +79,8 @@ public class ShootPredictively : MonoBehaviour {
 			if (S2 < 0.0001f)
 			{
 				//moving too fast away
-				return aTargetPos  - aInterceptorPos;
+				return targetDir;
+
 				//return Vector3.zero;
 			}
 			else
