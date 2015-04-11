@@ -6,7 +6,8 @@ public class AsteroidHealth : MonoBehaviour {
 	public float health;
 	public float maxHealth;
 	public GameObject explosion;
-	
+	public Color[] colors;
+
 	[HideInInspector]
 	public bool invToPirece;
 	[HideInInspector]
@@ -50,7 +51,19 @@ public class AsteroidHealth : MonoBehaviour {
 			Destroy (gameObject);
 			if(explosion != null)
 				Instantiate (explosion, transform.position, transform.rotation);
+		} else {
+			StartCoroutine(flashRed());
 		} 
+	}
+
+	IEnumerator flashRed()
+	{
+		if(colors.Length >= 2)
+		{
+			renderer.material.color = colors[0];
+			yield return new WaitForSeconds(0.05f);
+			renderer.material.color = colors[1];
+		}
 	}
 
 }
