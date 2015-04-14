@@ -49,39 +49,39 @@ public class ShootPredictively : MonoBehaviour {
 	public static Vector3 CalculateInterceptCourse(Vector3 aTargetPos, Vector3 aTargetSpeed, Vector3 aInterceptorPos, float aInterceptorSpeed)
 	{
 		Vector3 targetDir = aTargetPos - aInterceptorPos; //vector to the player ship
-		//print ("TargetDir: " + targetDir);
 
 		float iSpeed2 = aInterceptorSpeed * aInterceptorSpeed; //bullet speed squared (two floats)
 		float tSpeed2 = aTargetSpeed.sqrMagnitude; //ship speed squared (two vector3s)
 
-		float fDot1 = Vector3.Dot(targetDir, aTargetSpeed); //adjustment value (higher equals more potential adjustment)
-		//print ("Speed: " + aTargetSpeed);
-		//print (fDot1);
+		float fDot1 = Vector3.Dot(targetDir, aTargetSpeed); //larger if crossing path is parallel
+
 		float targetDist2 = targetDir.sqrMagnitude; //from bullet to ship squared
 
-		float d = (fDot1 * fDot1) //bullets ability 
-			- targetDist2 * (tSpeed2 - iSpeed2); //player's capability to escape
+		//D is smaller when more angular adjustment is required
+		float d = (fDot1 * fDot1) //D will be higher if targetDir and targetSpeed are more parallel 
+			- targetDist2 //D will be higher if distance is greater (as long as bullet is fast)
+			* (tSpeed2 - iSpeed2); //will be negative if bullet is faster than target
+
 		if (d < 0.1f) {  // negative == no possible course because the interceptor isn't fast enough
-			return targetDir;
-			//return Vector3.zero;
+			return targetDir; //return a path straight to the player
 
 		}
+
 		float sqrt = Mathf.Sqrt(d);
 
-		float S1 = (-fDot1 - sqrt) / targetDist2; //adjustment to vector
-		float S2 = (-fDot1 + sqrt) / targetDist2; //secondary adjustment to vector
+		float S1 = (-fDot1 - sqrt) / targetDist2; //first scalar adjustment
+		float S2 = (-fDot1 + sqrt) / targetDist2; //secondary scalar adjustment
 
 
 		//pick the vector with larger adjustment multiplication
-		//apply it to vector to player + vector of player movemtent
+		//apply it to vector to player + vector of player movement
 		if (S1 < 0.0001f)
 		{
 			if (S2 < 0.0001f)
 			{
-				//moving too fast away
+				//shoot directly at the player
 				return targetDir;
 
-				//return Vector3.zero;
 			}
 			else
 				return (S2) * targetDir + aTargetSpeed;
