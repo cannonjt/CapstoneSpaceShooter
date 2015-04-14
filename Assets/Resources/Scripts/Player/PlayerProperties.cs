@@ -19,6 +19,7 @@ public class PlayerProperties : MonoBehaviour {
 	private GameObject shieldObject;
 	private bool atMax;
 
+
 	// Use this for initialization
 	void Start () {
 		health = maxHealth;
@@ -28,6 +29,7 @@ public class PlayerProperties : MonoBehaviour {
 
 		shieldObject = transform.GetChild(2).gameObject;
 		lastDamage = Time.time;
+
 	}
 	
 	// Update is called once per frame

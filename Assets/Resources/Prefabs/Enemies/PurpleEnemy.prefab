@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 250
+  maxHealth: 200
   explosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 2}
   colors:
   - {r: 1, g: .242647052, b: .791074932, a: 0}
@@ -215,6 +215,8 @@ MonoBehaviour:
   currentWepLeft: {fileID: 11442720, guid: b5d0d60c50d287f498c9e333fd3e7537, type: 2}
   currentWepRight: {fileID: 11442720, guid: b5d0d60c50d287f498c9e333fd3e7537, type: 2}
   shootDist: 5
+  nextCheck: 0
+  fireRate: 0
 --- !u!136 &13683576
 CapsuleCollider:
   m_ObjectHideFlags: 1

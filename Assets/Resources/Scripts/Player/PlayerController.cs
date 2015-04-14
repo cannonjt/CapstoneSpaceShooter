@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 [System.Serializable]
@@ -16,20 +17,25 @@ public class PlayerController : MonoBehaviour {
 	public float maxSpeed;
 	public Weapon currentWep;
 	public Weapon defaultWep;
+	public Slider spdSlider;
 
 	private GameObject thruster;
 	private Transform playerShotSpawn;
+	private float boostTimer;
+	private bool boostOn;
+	private Image ffIcon;
 
 	void Start()
 	{
-
 		playerShotSpawn = transform.GetChild (0).GetChild (0).GetChild (0);
 		thruster = GameObject.Find ("engines_player");
 		currentWep = (Weapon)Instantiate (defaultWep);
 		currentWep.GetComponent<Weapon> ().setUp (gameObject);
 		currentWep.GetComponent<Weapon> ().setSpawnLocation (playerShotSpawn);
 		currentWep.transform.parent = transform;
-
+		spdSlider.gameObject.SetActive (false);
+		ffIcon = GameObject.Find("SpeedIcon").GetComponent<Image>();
+		ffIcon.enabled = false;
 	}
 	void FixedUpdate()
 	{
@@ -79,6 +85,17 @@ public class PlayerController : MonoBehaviour {
 	void Update()
 	{
 		currentWep.shoot();
+
+		if (boostOn) 
+		{
+			float timeLeft = boostTimer - Time.time;
+			spdSlider.value = timeLeft;
+			if (timeLeft <= 0) 
+			{
+				boostOn = false;
+				speedBoost (false, 0);
+			}
+		}
 	}
 
 	void Rotate(float horiz, float vert)
@@ -147,7 +164,33 @@ public class PlayerController : MonoBehaviour {
 		currentWep.transform.parent = transform;
 	}
 
+	public void speedBoost(bool boost, float duration)
+	{
+		if (boost) 
+		{
+			spdSlider.maxValue = duration;
+			spdSlider.value = duration;
+			spdSlider.gameObject.SetActive (true);
+			ffIcon.enabled = true;
+			boostTimer = Time.time + duration;
+			boostOn = true;
+			maxSpeed *= 1.5f;
+			turnSpeed *= 3f;
+			thrustSpeed *= 1.5f;
+		} 
+		else 
+		{
+			spdSlider.gameObject.SetActive (false);
+			ffIcon.enabled = false;
+			maxSpeed /= 1.5f;
+			turnSpeed /= 3f;
+			thrustSpeed /= 1.5f;
+		}
+	}
 
-
+	public bool getBoost()
+	{
+		return boostOn;
+	}
 
 }

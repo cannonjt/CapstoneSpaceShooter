@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11499104}
   - 82: {fileID: 8299104}
   m_Layer: 0
-  m_Name: Burst Laser
+  m_Name: Minigun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,18 +95,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 199104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e14a158665844f4997777c7ef9424b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b92c4b43a31a7a4da5b4655b08e8d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shotProperties:
     shot: {fileID: 100002, guid: ddcae839a6418004e8ba4245a6d2bfd9, type: 2}
-    ammo: 100
-    damage: 25
-    fireRate: .0500000007
+    ammo: 500
+    damage: 5
+    fireRate: .00999999978
     numberOfShots: 1
-    firingAngle: 90
-    burst: 3
-    burstWait: .5
+    firingAngle: 30
+    burst: 0
+    burstWait: 0
     range: 0
     destroyOnHit: 1
     nextFire: 0
