@@ -1834,6 +1834,7 @@ MonoBehaviour:
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
   invToPirece: 0
   invLength: 0
+  dropRate: 0
 --- !u!54 &186838009
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5096,6 +5097,7 @@ MonoBehaviour:
   colors: []
   invToPirece: 0
   invLength: 0
+  dropRate: 0
 --- !u!1 &592139873
 GameObject:
   m_ObjectHideFlags: 0
@@ -5425,6 +5427,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 0}
   invToPirece: 0
   invLength: 0
+  dropRate: 0
 --- !u!23 &676019782
 Renderer:
   m_ObjectHideFlags: 0
@@ -5961,6 +5964,7 @@ MonoBehaviour:
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
   invToPirece: 0
   invLength: 0
+  dropRate: 100
 --- !u!54 &827460020
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8830,6 +8834,7 @@ MonoBehaviour:
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
   invToPirece: 0
   invLength: 0
+  dropRate: 0
 --- !u!54 &1303822920
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12274,6 +12279,10 @@ Prefab:
       propertyPath: maxHealth
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 11483580, guid: 6ad155fcbf1d20e43bdb142505dec1c2, type: 2}
+      propertyPath: dropRate
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ad155fcbf1d20e43bdb142505dec1c2, type: 2}
   m_RootGameObject: {fileID: 2099052523}
@@ -12452,6 +12461,10 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 180724958}
+    - target: {fileID: 11483580, guid: 6ad155fcbf1d20e43bdb142505dec1c2, type: 2}
+      propertyPath: dropRate
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ad155fcbf1d20e43bdb142505dec1c2, type: 2}
   m_RootGameObject: {fileID: 827460013}
@@ -12744,7 +12757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33edc6e3c2030e2458370ede46c02b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 10
+  duration: 20
 --- !u!114 &2049166853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13079,6 +13092,7 @@ MonoBehaviour:
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
   invToPirece: 0
   invLength: 0
+  dropRate: 100
 --- !u!54 &2099052530
 Rigidbody:
   m_ObjectHideFlags: 0

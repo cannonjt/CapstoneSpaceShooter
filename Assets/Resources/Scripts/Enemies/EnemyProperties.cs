@@ -11,6 +11,9 @@ public class EnemyProperties : MonoBehaviour {
 	public bool invToPirece;
 	[HideInInspector]
 	public float invLength;
+	//Drop chance out of 100
+	//dropRate = x% chance of dropping an item
+	public float dropRate;
 
 	private FollowerBehavior followerInfo;
 	void Start()
@@ -65,9 +68,45 @@ public class EnemyProperties : MonoBehaviour {
 	{
 		health -= damage;
 		if (health <= 0) {
-			Destroy (gameObject);
+
+			float dropCheck = Random.Range (1.0f,101.0f);
+			if (dropRate >= dropCheck)
+			{
+				//dropping an item
+				//first, choose which
+				GameObject powerup;
+				float dropType = Random.Range (1.0f,101.0f);
+				if (dropType <= 30.0f)
+				{
+					//hp
+					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/HealthPickUp");
+				} else if (dropType <= 55.0f)
+				{
+					//speed
+					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/SpeedPickUp");
+				}
+				else if (dropType <= 75.0f)
+				{
+					//shotgun
+					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/ShotgunPickUp");
+				}
+				else if (dropType <= 90.0f)
+				{
+					//minigun
+					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/MinigunPickUp");
+				}
+				else
+				{
+					//shockwave
+					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/ShockwavePickUp");
+				}
+				GameObject newWeapon = (GameObject)Instantiate (powerup);
+				Vector3 spawnPos = gameObject.rigidbody.position;
+				newWeapon.rigidbody.position = spawnPos;
+			}
 			if(explosion != null)
 				Instantiate (explosion, transform.position, transform.rotation);
+			Destroy (gameObject);
 		} else {
 			StartCoroutine(flashRed());
 		}
