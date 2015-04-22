@@ -2,11 +2,6 @@
 using System.Collections;
 
 public class DestroyProjectile : MonoBehaviour {
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	void OnTriggerExit(Collider other)
 	{
