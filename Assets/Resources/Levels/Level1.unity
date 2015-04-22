@@ -1941,6 +1941,7 @@ MonoBehaviour:
   shootDist: 0
   target: {fileID: 180724958}
   distance: 0
+  startPosition: {x: 0, y: 0, z: 0}
   fieldOfViewAngle: 110
   lengthOfSight: 2
   objectDetected: 0
@@ -5505,6 +5506,7 @@ MonoBehaviour:
   shootDist: 0
   target: {fileID: 180724958}
   distance: 0
+  startPosition: {x: 0, y: 0, z: 0}
   fieldOfViewAngle: 110
   lengthOfSight: 4
   objectDetected: 0
@@ -5979,7 +5981,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &827460021
 MonoBehaviour:
@@ -5993,14 +5995,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0177d1195a05e4747af5a67e07243341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 0
-  chaseSpeed: 2
+  patrolSpeed: 2
+  chaseSpeed: 4
   thrustSpeed: 20
   minDist: 6
   maxDist: 15
   shootDist: 0
   target: {fileID: 180724958}
   distance: 0
+  startPosition: {x: 0, y: 0, z: 0}
   fieldOfViewAngle: 110
   lengthOfSight: 4
   objectDetected: 0
@@ -13194,7 +13197,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &2099052531
 MonoBehaviour:
@@ -13208,14 +13211,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0177d1195a05e4747af5a67e07243341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 0
-  chaseSpeed: 2
+  patrolSpeed: 2
+  chaseSpeed: 4
   thrustSpeed: 20
   minDist: 6
   maxDist: 15
   shootDist: 0
   target: {fileID: 180724958}
   distance: 0
+  startPosition: {x: 0, y: 0, z: 0}
   fieldOfViewAngle: 110
   lengthOfSight: 4
   objectDetected: 0

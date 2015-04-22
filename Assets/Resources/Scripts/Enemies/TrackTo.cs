@@ -11,7 +11,8 @@ public class TrackTo : MonoBehaviour {
 	public float shootDist;        //distance to the target to start shooting
 	public Transform target;       //what the entity is following around
 	public float distance;         //distance between entity and the target
-	
+	public Vector3 startPosition;  //Starting location of the enemy
+
 	public float fieldOfViewAngle = 110f;  // Number of degrees, centred on forward, for the enemy see.
 	public float lengthOfSight = 2f;            // Distance in front of the entity that it can "see"
 	public bool objectDetected = false;	   // True if the entity "sees" an object and needs to change course
@@ -19,9 +20,14 @@ public class TrackTo : MonoBehaviour {
 	
 
 	void Start(){
-
+		StartCoroutine(setSpawn());
 	}
-	
+
+	IEnumerator setSpawn(){
+		yield return new WaitForSeconds(0.75f);
+		startPosition = transform.position;
+	}
+
 	void Update(){
 		if (target != null) {
 
@@ -44,25 +50,33 @@ public class TrackTo : MonoBehaviour {
 				//add thrust in the direction of movement
 				if (rigidbody.velocity.magnitude < chaseSpeed && howFar >= minDist) {
 					checkSight ();
-					if (objectDetected == true) {
-							//avoid running in to it.
-							//Vector3 Angle = new Vector3(-obstacleAngle* 4.0f ,0, System.Math.Abs(obstacleAngle));
-							//Vector3 Where = Angle - transform.position; 
-							//Quaternion wantDirObstacle = Quaternion.LookRotation(Where, Vector3.up ); 
-							//Quaternion newRotationObstacle = Quaternion.RotateTowards(rigidbody.rotation, wantDirObstacle, 60*Time.deltaTime);
-							//rigidbody.MoveRotation (newRotationObstacle);
-							//transform.Rotate(0,-obstacleAngle* 3.0f,0);
+					//object avoidance 
+					if (objectDetected == true) { //if you detect an asteroid rotate away from it.
+
 							transform.Rotate (0, (-obstacleAngle * 3.0f), 0);
 							rigidbody.AddForce (transform.forward * thrustSpeed);
-							//print ("eek" + obstacleAngle);
-					} else {
+
+					} else {					  //if you do not detect and asteroid then move forward
 						rigidbody.AddForce (transform.forward * thrustSpeed);
 					}
+
 				} else { rigidbody.angularVelocity = Vector3.zero; }
+
+			} else { 
+				Vector3 goHome = startPosition - transform.position;
+				
+				Quaternion wantDir = Quaternion.LookRotation (goHome, Vector3.up); 
+				Quaternion newRotation2 = Quaternion.RotateTowards (rigidbody.rotation, wantDir, 60 * Time.deltaTime);
+
+				rigidbody.MoveRotation (newRotation2);
+				if (rigidbody.velocity.magnitude < patrolSpeed){
+				rigidbody.AddForce (transform.forward * thrustSpeed);
+				}
 			}
 		}
 	}
 	
+
 	//Calculates the distance between the target and its self
 	float getDistance(){
 		
