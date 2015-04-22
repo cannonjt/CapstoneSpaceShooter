@@ -143,6 +143,7 @@ MonoBehaviour:
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
   invToPirece: 0
   invLength: 0
+  dropRate: 20
 --- !u!136 &13639778
 CapsuleCollider:
   m_ObjectHideFlags: 1

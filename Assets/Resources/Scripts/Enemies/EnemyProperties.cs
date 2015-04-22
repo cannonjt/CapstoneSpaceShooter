@@ -100,9 +100,8 @@ public class EnemyProperties : MonoBehaviour {
 					//shockwave
 					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/ShockwavePickUp");
 				}
-				GameObject newWeapon = (GameObject)Instantiate (powerup);
 				Vector3 spawnPos = gameObject.rigidbody.position;
-				newWeapon.rigidbody.position = spawnPos;
+				Instantiate (powerup, spawnPos, Quaternion.identity);
 			}
 			if(explosion != null)
 				Instantiate (explosion, transform.position, transform.rotation);
