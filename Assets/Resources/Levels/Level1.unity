@@ -6255,8 +6255,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1509359936}
-  - {fileID: 1226877164}
   - {fileID: 1271778287}
+  - {fileID: 1226877164}
   m_Father: {fileID: 0}
   m_RootOrder: 10
 --- !u!82 &871080568
@@ -6359,20 +6359,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0191cae1eca8a48b56f89133d01050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 0
+  spawnRate: 1.5
   numberSpawned: 0
   spawnBound:
     xMax: 0
     xMin: 0
     zMax: 0
     zMin: 0
-  destroyBound:
-    xMax: 0
-    xMin: 0
-    zMax: 0
-    zMin: 0
-  destructableAsteroid: {fileID: 0}
-  indestructableAsteroid: {fileID: 0}
+  destructableAsteroid: {fileID: 188190, guid: 7838f025c2fd9aa4783bf0bf5162ed88, type: 2}
+  indestructableAsteroid: {fileID: 125208, guid: 57afba152bb1175489fe0280e28c3d1f,
+    type: 2}
 --- !u!1 &889605636
 GameObject:
   m_ObjectHideFlags: 0
@@ -8664,7 +8660,7 @@ Transform:
   - {fileID: 1902370187}
   - {fileID: 962391017}
   m_Father: {fileID: 871080567}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &1232642198
 GameObject:
   m_ObjectHideFlags: 0
@@ -8750,7 +8746,7 @@ Transform:
   m_LocalScale: {x: 250, y: 5, z: 200}
   m_Children: []
   m_Father: {fileID: 871080567}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!114 &1271778288
 MonoBehaviour:
   m_ObjectHideFlags: 0
