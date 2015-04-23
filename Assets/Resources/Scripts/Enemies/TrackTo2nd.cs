@@ -40,7 +40,7 @@ public class TrackTo2nd : MonoBehaviour {
 				Vector3 track = target.position - transform.position;
 				
 				Quaternion wantDir = Quaternion.LookRotation (track, Vector3.up); 
-				Quaternion newRotation = Quaternion.RotateTowards (rigidbody.rotation, wantDir, 60 * Time.deltaTime);
+				Quaternion newRotation = Quaternion.RotateTowards (rigidbody.rotation, wantDir, 120 * Time.deltaTime);
 				
 				
 				//look in the direction of the player
@@ -50,6 +50,7 @@ public class TrackTo2nd : MonoBehaviour {
 				//add thrust in the direction of movement
 				if (rigidbody.velocity.magnitude < chaseSpeed && howFar >= minDist) {
 					checkSight ();
+
 					//object avoidance 
 					if (objectDetected == true) { //if you detect an asteroid rotate away from it.
 						
@@ -57,7 +58,8 @@ public class TrackTo2nd : MonoBehaviour {
 						rigidbody.AddForce (transform.forward * thrustSpeed);
 						
 					} else {					  //if you do not detect and asteroid then move forward
-						rigidbody.AddForce (transform.forward * thrustSpeed);
+						Vector3 IC = CalculateInterceptCourse(target.position, target.rigidbody.velocity, transform.position, chaseSpeed);
+						rigidbody.AddForce (IC * thrustSpeed);
 					}
 					
 				} else { rigidbody.angularVelocity = Vector3.zero; }
@@ -121,5 +123,57 @@ public class TrackTo2nd : MonoBehaviour {
 				}	
 			}
 		}
+	}
+
+	//Gives a Vector that will hit the target if they do not change speed or direction
+	//Note: The bullet must move fast enough or it will simply return a vector pointing straight at
+	//the target.
+	//Adapted from Bunny83's post at: http://answers.unity3d.com/questions/296949/how-to-calculate-a-position-to-fire-at.html
+	public static Vector3 CalculateInterceptCourse(Vector3 aTargetPos, Vector3 aTargetSpeed, Vector3 aInterceptorPos, float aInterceptorSpeed)
+	{
+		Vector3 targetDir = aTargetPos - aInterceptorPos; //vector to the player ship
+		
+		float iSpeed2 = aInterceptorSpeed * aInterceptorSpeed; //bullet speed squared (two floats)
+		float tSpeed2 = aTargetSpeed.sqrMagnitude; //ship speed squared (two vector3s)
+		
+		float fDot1 = Vector3.Dot(targetDir, aTargetSpeed); //larger if crossing path is parallel
+		
+		float targetDist2 = targetDir.sqrMagnitude; //from bullet to ship squared
+		
+		//D is smaller when more angular adjustment is required
+		float d = (fDot1 * fDot1) //D will be higher if targetDir and targetSpeed are more parallel 
+			- targetDist2 //D will be higher if distance is greater (as long as bullet is fast)
+				* (tSpeed2 - iSpeed2); //will be negative if bullet is faster than target
+		
+		if (d < 0.1f) {  // negative == no possible course because the interceptor isn't fast enough
+			return targetDir; //return a path straight to the player
+			
+		}
+		
+		float sqrt = Mathf.Sqrt(d);
+		
+		float S1 = (-fDot1 - sqrt) / targetDist2; //first scalar adjustment
+		float S2 = (-fDot1 + sqrt) / targetDist2; //secondary scalar adjustment
+		
+		
+		//pick the vector with larger adjustment multiplication
+		//apply it to vector to player + vector of player movement
+		if (S1 < 0.0001f)
+		{
+			if (S2 < 0.0001f)
+			{
+				//shoot directly at the player
+				return targetDir;
+				
+			}
+			else
+				return (S2) * targetDir + aTargetSpeed;
+		}
+		else if (S2 < 0.0001f)
+			return (S1) * targetDir + aTargetSpeed;
+		else if (S1 < S2)
+			return (S2) * targetDir + aTargetSpeed;
+		else
+			return (S1) * targetDir + aTargetSpeed;
 	}
 }

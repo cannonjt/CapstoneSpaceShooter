@@ -25,7 +25,7 @@ public class EnemyShootBehavior2nd : MonoBehaviour {
 			if (Time.time > nextCheck) {
 				int shoot = Random.Range (0, 10);
 				
-				if (shoot > 4) {
+				if (shoot > 5) {
 					currentWep.GetComponent<Weapon> ().shoot ();
 
 				}
