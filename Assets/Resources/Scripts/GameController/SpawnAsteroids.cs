@@ -8,8 +8,11 @@ public class SpawnAsteroids : MonoBehaviour {
 	public float spawnRate;
 	public int numberSpawned;
 	public Boundary spawnBound;
+	public float asteroidSpeed;
 	public GameObject destructableAsteroid;
 	public GameObject indestructableAsteroid;
+
+	private GameObject parentAsteroid;
 
 
 	private Transform absBoundary;
@@ -30,6 +33,12 @@ public class SpawnAsteroids : MonoBehaviour {
 
 
 		spawnTimer = Time.time;
+
+		parentAsteroid = GameObject.Find("Asteroids");
+
+		if (parentAsteroid == null) {
+			parentAsteroid = new GameObject ("Asteroids");
+		}
 	}
 	
 	// Update is called once per frame
@@ -38,8 +47,11 @@ public class SpawnAsteroids : MonoBehaviour {
 		if (spawnTimer  <= Time.time ) {
 			Vector3 spawnPos = getGoodSpawn();
 			GameObject newAsteroid = (GameObject)Instantiate (destructableAsteroid, spawnPos, Quaternion.identity);
-
+			Vector3 randomDirection = new Vector3(Random.Range(-100f, 100f), 0f, Random.Range(-100f, 100f));
+			newAsteroid.rigidbody.AddForce(randomDirection * asteroidSpeed);
 			spawnTimer = Time.time + spawnRate;
+
+			newAsteroid.transform.parent = parentAsteroid.transform;
 		}
 
 	}

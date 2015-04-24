@@ -9,7 +9,9 @@ EditorBuildSettings:
     path: Assets/xx_Scenes/Main.unity
   - enabled: 0
     path: Assets/Resources/Levels/Level1.unity
-  - enabled: 0
-    path: Assets/Resources/Levels/Level1.unity
   - enabled: 1
+    path: Assets/Resources/Levels/Level1.unity
+  - enabled: 0
     path: Assets/Resources/Levels/Predictive_Demo.unity
+  - enabled: 1
+    path: Assets/Resources/Levels/mainMenu.unity
