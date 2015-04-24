@@ -30,7 +30,6 @@ public class TrackTo : MonoBehaviour {
 	}
 
 	void Update(){
-		print (target != null);
 		if (target != null) {
 
 			float howFar = getDistance ();
