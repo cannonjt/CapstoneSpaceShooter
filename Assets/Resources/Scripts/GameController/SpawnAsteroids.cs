@@ -6,7 +6,7 @@ using System.Collections;
 public class SpawnAsteroids : MonoBehaviour {
 
 	public float spawnRate;
-	public int numberSpawned;
+	public int maxAsteroids;
 	public Boundary spawnBound;
 	public float asteroidSpeed;
 	public GameObject destructableAsteroid;
@@ -17,6 +17,7 @@ public class SpawnAsteroids : MonoBehaviour {
 
 	private Transform absBoundary;
 	private float spawnTimer;
+	private int indestructableCounter;
 
 
 	// Use this for initialization
@@ -39,15 +40,29 @@ public class SpawnAsteroids : MonoBehaviour {
 		if (parentAsteroid == null) {
 			parentAsteroid = new GameObject ("Asteroids");
 		}
+
+		indestructableCounter = 0;
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (spawnTimer  <= Time.time ) {
+		if (spawnTimer  <= Time.time  && parentAsteroid.transform.childCount < maxAsteroids) {
 			Vector3 spawnPos = getGoodSpawn();
-			GameObject newAsteroid = (GameObject)Instantiate (destructableAsteroid, spawnPos, Quaternion.identity);
-			Vector3 randomDirection = new Vector3(Random.Range(-100f, 100f), 0f, Random.Range(-100f, 100f));
+			GameObject newAsteroid;
+
+			if(indestructableCounter >= 4)//every fourth asteroid is indestructable
+			{
+				newAsteroid = (GameObject)Instantiate (indestructableAsteroid, spawnPos, Quaternion.identity);
+				indestructableCounter = 0;
+			}
+			else
+			{
+				newAsteroid = (GameObject)Instantiate (destructableAsteroid, spawnPos, Quaternion.identity);
+				indestructableCounter++;
+			}
+			Vector3 randomDirection = new Vector3(Random.Range(-75f, 75f), 0f, Random.Range(-75f, 75f));
 			newAsteroid.rigidbody.AddForce(randomDirection * asteroidSpeed);
 			spawnTimer = Time.time + spawnRate;
 

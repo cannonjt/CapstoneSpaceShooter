@@ -3680,7 +3680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRate: .0500000007
-  numberSpawned: 0
+  maxAsteroids: 50
   spawnBound:
     xMax: 0
     xMin: 0
