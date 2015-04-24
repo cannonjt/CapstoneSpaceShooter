@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56a3045c92742541aa1b0ffca9021db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWep: {fileID: 11497988, guid: 99eff440726da9249b97d310448fc338, type: 2}
+  currentWep: {fileID: 11460632, guid: 3fb8c57565225464ea83d72e96d5f27b, type: 2}
   shootDist: 10
   nextCheck: 0
   fireRate: 3
@@ -196,7 +196,7 @@ MonoBehaviour:
   chaseSpeed: 10
   thrustSpeed: 5
   minDist: 3
-  maxDist: 15
+  maxDist: 8
   shootDist: 0
   target: {fileID: 0}
   distance: 0

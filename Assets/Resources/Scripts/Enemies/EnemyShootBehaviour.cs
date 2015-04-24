@@ -28,7 +28,7 @@ public class EnemyShootBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Transform player = getTarget ();
-		if (player.gameObject.activeInHierarchy) {
+		if (player != null && player.gameObject.activeInHierarchy) {
 			if (Time.time > nextCheck) {
 				int shoot = Random.Range (0, 10);
 

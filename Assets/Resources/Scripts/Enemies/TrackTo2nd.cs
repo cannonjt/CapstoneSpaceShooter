@@ -20,6 +20,7 @@ public class TrackTo2nd : MonoBehaviour {
 	
 	
 	void Start(){
+		target = GameObject.FindGameObjectWithTag("Player").transform;
 		StartCoroutine(setSpawn());
 	}
 	

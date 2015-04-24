@@ -20,6 +20,7 @@ public class TrackTo : MonoBehaviour {
 	
 
 	void Start(){
+		target = GameObject.FindGameObjectWithTag("Player").transform;
 		StartCoroutine(setSpawn());
 	}
 
@@ -29,6 +30,7 @@ public class TrackTo : MonoBehaviour {
 	}
 
 	void Update(){
+		print (target != null);
 		if (target != null) {
 
 			float howFar = getDistance ();
