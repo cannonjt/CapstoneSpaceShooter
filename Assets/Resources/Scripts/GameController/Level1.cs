@@ -7,6 +7,7 @@ public class Level1 : MonoBehaviour {
 	public float waveCooldown;
 	public Boundary spawnBound;
 	public int wave;
+	public int totalWaves;
 
 	private float cooldown;
 	private bool check;
@@ -20,6 +21,10 @@ public class Level1 : MonoBehaviour {
 
 	void Update () {
 		timer = Time.time;
+		if (wave == totalWaves) 
+		{
+			return;
+		}
 		int enemiesLeft = GameObject.FindGameObjectsWithTag ("Enemy").Length;
 		if (wave == 0){
 			if (timer >= initialCooldown) {
@@ -42,8 +47,15 @@ public class Level1 : MonoBehaviour {
 				{
 					if (timer >= cooldown)
 					{
-						beginNextWave();
 						check = true;
+						if ((wave + 1) < totalWaves)
+						{
+							beginNextWave();
+						}
+						else
+						{
+							beginFinalWave();
+						}
 					}
 				}
 			}
@@ -66,14 +78,27 @@ public class Level1 : MonoBehaviour {
 	private void beginNextWave()
 	{
 		wave++;
-		for (int i=0; i<wave+2; i++) 
+		float variance, variance2, variance3;
+		variance = Random.Range (-1.0f, 3.0f);
+		variance2 = Random.Range (-3.0f, 1.0f);
+		variance3 = Random.Range (-2.0f, 1.0f);
+		for (int i=0; i<wave+variance; i++) 
 		{
 			spawnEnemy ();
 		}
-		for (int i=0; i<wave-1; i++) 
+		for (int i=0; i<wave-3+variance2; i++) 
+		{
+			spawnEnemy2();
+		}
+		for (int i=0; i<wave-2+variance3; i++) 
 		{
 			spawnPair();
 		}
+	}
+	private void beginFinalWave()
+	{
+		wave = totalWaves;
+		spawnBoss ();
 	}
 	private void spawnEnemy()
 	{
@@ -86,6 +111,18 @@ public class Level1 : MonoBehaviour {
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		if(player != null)
 			newEnemy.GetComponent<TrackTo> ().target = player.transform;
+	}
+	private void spawnEnemy2()
+	{
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/GreenEnemy");
+		Vector3 spawnPos = new Vector3 (
+			Random.Range (spawnBound.xMin, spawnBound.xMax), 
+			0.0f,
+			Random.Range (spawnBound.zMin, spawnBound.zMax));
+		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
+		if(player != null)
+			newEnemy.GetComponent<TrackTo2nd> ().target = player.transform;
 	}
 	private void spawnPair()
 	{
@@ -102,5 +139,26 @@ public class Level1 : MonoBehaviour {
 		GameObject newF = (GameObject)Instantiate (follower, spawnPos, Quaternion.identity);
 		FollowerBehavior fBeh = newF.GetComponent<FollowerBehavior> ();
 		fBeh.leader = newEnemy.transform;
+	}
+	private void spawnBoss()
+	{
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/Boss");
+		if (player != null) 
+		{
+			Rigidbody r = player.GetComponent<Rigidbody> ();
+			Transform t = spawningShip.transform;
+			GameObject g = t.GetChild (1).gameObject;
+			ShootPredictively s = g.GetComponent<ShootPredictively> ();
+			s.target = r;
+		}
+		Vector3 spawnPos = new Vector3 (
+			Random.Range (spawnBound.xMin, spawnBound.xMax), 
+			0.0f,
+			Random.Range (spawnBound.zMin, spawnBound.zMax));
+		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
+		if(player != null)
+			newEnemy.GetComponent<TrackTo> ().target = player.transform;
+
 	}
 }

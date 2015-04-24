@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 500
+  maxHealth: 2000
   explosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
   colors:
   - {r: 1, g: .513793111, b: .25, a: 0}
