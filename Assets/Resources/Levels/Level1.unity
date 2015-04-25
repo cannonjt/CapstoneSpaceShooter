@@ -4037,10 +4037,10 @@ MonoBehaviour:
   initialCooldown: 5
   waveCooldown: 5
   spawnBound:
-    xMax: 10
-    xMin: -10
-    zMax: 8
-    zMin: -8
+    xMax: 24
+    xMin: -24
+    zMax: 24
+    zMin: -24
   wave: 0
   totalWaves: 8
 --- !u!114 &871080570

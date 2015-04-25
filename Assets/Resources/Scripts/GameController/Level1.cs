@@ -3,30 +3,53 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Level1 : MonoBehaviour {
+	//Time from when scene is loaded to first wave spawning in
 	public float initialCooldown;
+	//Cooldown time between waves
 	public float waveCooldown;
+	//Enemies can only spawn within this boundary
 	public Boundary spawnBound;
+	//Current wave number. Not sure why this is public tbh
 	public int wave;
+	//Total number of waves, final wave guaranteed to be a boss
 	public int totalWaves;
 
+	//Counter variable during cooldown
 	private float cooldown;
+	//Bool variable to check if we can spawn next wave
 	private bool check;
+	//Keeps track of the time
 	private float timer;
 
 	void Start () {
+		//Initialize some necessary variables
 		wave = 0;
 		check = false;
-		initialCooldown = Time.time + 5;
+		initialCooldown = Time.time + initialCooldown;
 	}
 
 	void Update () {
+		//Update timer
 		timer = Time.time;
+		//Are we in boss wave?
 		if (wave == totalWaves) 
 		{
+			//Is the boss alive? If not, we've won
+			bool bossAlive = (GameObject.FindGameObjectsWithTag("Boss").Length > 0);
+			if (bossAlive)
+			{
+				//do nothing
+			}
+			else
+			{
+				print ("We win!");
+			}
 			return;
 		}
+		//Count # of enemies left. Will be important in determining if we can proceed to next wave
 		int enemiesLeft = GameObject.FindGameObjectsWithTag ("Enemy").Length;
 		if (wave == 0){
+			//Wave 1. After cooldown, begin it
 			if (timer >= initialCooldown) {
 					beginWave1 ();
 					check = true;
@@ -34,9 +57,12 @@ public class Level1 : MonoBehaviour {
 		}
 		else 
 		{
+			//We're not in pre-game. First, update GUI to say wave # and enemies left, if any are left
 			Text wDisp = GameObject.Find ("WaveNum").GetComponent<Text> ();
 			if (enemiesLeft == 0) 
 			{
+				//All enemies are dead, so we're in cooldown. 
+				//First time we enter cooldown, make sure to set our cooldown timer
 				wDisp.text = "Wave: " + wave.ToString();
 				if (check)
 				{
@@ -45,6 +71,7 @@ public class Level1 : MonoBehaviour {
 				}
 				else
 				{
+					//Begin the next wave!
 					if (timer >= cooldown)
 					{
 						check = true;
@@ -54,6 +81,7 @@ public class Level1 : MonoBehaviour {
 						}
 						else
 						{
+							//This is the last wave, so it calls a different method
 							beginFinalWave();
 							wDisp.text = "Wave: " + totalWaves.ToString() + "   Enemy: Boss";
 						}
@@ -62,6 +90,7 @@ public class Level1 : MonoBehaviour {
 			}
 			else
 			{
+				//Enemies are still alive. Show how many in GUI.
 				wDisp.text = "Wave: " + wave.ToString() + "   Enemies Left: " + enemiesLeft.ToString();
 			}
 		}
@@ -69,6 +98,7 @@ public class Level1 : MonoBehaviour {
 
 	private void beginWave1()
 	{
+		//Spawn 3 basic enemies.
 		wave = 1;
 		for (int i=0; i<3; i++) 
 		{
@@ -78,19 +108,23 @@ public class Level1 : MonoBehaviour {
 
 	private void beginNextWave()
 	{
+		//A wave will contain a random amount of enemies.
 		wave++;
 		float variance, variance2, variance3;
 		variance = Random.Range (-1.0f, 3.0f);
 		variance2 = Random.Range (-3.0f, 1.0f);
 		variance3 = Random.Range (-2.0f, 1.0f);
+		//Basic enemy: We can spawn a lot of these.
 		for (int i=0; i<wave+variance; i++) 
 		{
 			spawnEnemy ();
 		}
+		//The green enemy. Rather rare, but can potentially spawn ~wave 3
 		for (int i=0; i<wave-3+variance2; i++) 
 		{
 			spawnEnemy2();
 		}
+		//A pair of a normal enemy and a follower.
 		for (int i=0; i<wave-2+variance3; i++) 
 		{
 			spawnPair();
@@ -98,14 +132,17 @@ public class Level1 : MonoBehaviour {
 	}
 	private void beginFinalWave()
 	{
+		//Spawn the boss!
 		wave = totalWaves;
 		spawnBoss ();
 	}
+	//Method to spawn a basic enemy.
 	private void spawnEnemy()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/PurpleEnemy");
 		Vector3 spawnPos = Vector3.zero;
+		//If there's a player, we need to make sure the enemies won't spawn in the player's fov.
 		if (player != null) {
 			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
 			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
@@ -123,6 +160,7 @@ public class Level1 : MonoBehaviour {
 			zVal);
 		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
+		//Make sure they track the player!
 		if(player != null)
 			newEnemy.GetComponent<TrackTo> ().target = player.transform;
 	}
@@ -131,6 +169,7 @@ public class Level1 : MonoBehaviour {
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/GreenEnemy");
 		Vector3 spawnPos = Vector3.zero;
+		//If there's a player, we need to make sure the enemies won't spawn in the player's fov.
 		if (player != null) {
 			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
 			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
@@ -148,6 +187,7 @@ public class Level1 : MonoBehaviour {
 				zVal);
 		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
+		//Make sure they track the player!
 		if(player != null)
 			newEnemy.GetComponent<TrackTo2nd> ().target = player.transform;
 	}
@@ -156,6 +196,7 @@ public class Level1 : MonoBehaviour {
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/PurpleEnemy");
 		Vector3 spawnPos = Vector3.zero;
+		//If there's a player, we need to make sure the enemies won't spawn in the player's fov.
 		if (player != null) {
 			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
 			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
@@ -173,8 +214,10 @@ public class Level1 : MonoBehaviour {
 				zVal);
 		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
+		//Make sure they track the player!
 		if(player != null)
 			newEnemy.GetComponent<TrackTo> ().target = player.transform;
+		//The follower is a lot easier to instantiate, since it will spawn next to it's parent
 		GameObject follower = (GameObject)Resources.Load ("Prefabs/Enemies/EnemyFollower");
 		GameObject newF = (GameObject)Instantiate (follower, spawnPos, Quaternion.identity);
 		FollowerBehavior fBeh = newF.GetComponent<FollowerBehavior> ();
@@ -184,6 +227,7 @@ public class Level1 : MonoBehaviour {
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/Boss");
+		//This portion is for the predictive cannon the boss has
 		if (player != null) 
 		{
 			Rigidbody r = player.GetComponent<Rigidbody> ();
@@ -193,6 +237,7 @@ public class Level1 : MonoBehaviour {
 			s.target = r;
 		}
 		Vector3 spawnPos = Vector3.zero;
+		//If there's a player, we need to make sure the enemies won't spawn in the player's fov.
 		if (player != null) {
 			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
 			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
@@ -210,6 +255,7 @@ public class Level1 : MonoBehaviour {
 				zVal);
 		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
+		//Make sure they track the player!
 		if(player != null)
 			newEnemy.GetComponent<TrackTo> ().target = player.transform;
 
