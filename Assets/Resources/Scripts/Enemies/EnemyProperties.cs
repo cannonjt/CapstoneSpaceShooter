@@ -74,9 +74,27 @@ public class EnemyProperties : MonoBehaviour {
 			{
 				//dropping an item
 				//first, choose which
-				GameObject powerup;
+				GameObject powerup = null;
 				float dropType = Random.Range (1.0f,101.0f);
-				if (dropType <= 30.0f)
+				bool followerExists = (GameObject.FindGameObjectsWithTag("Follower").Length >= 1);
+				if (!followerExists)
+				{
+					if (dropType <= 5.0f)
+					{
+						//follower
+						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/FollowerPickUp");
+					}
+					else if (dropType <= 30.0f)
+					{
+						//hp
+						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/HealthPickUp");
+					}
+					else
+					{
+						//nothing
+					}
+				}
+				else if (dropType <= 30.0f)
 				{
 					//hp
 					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/HealthPickUp");
