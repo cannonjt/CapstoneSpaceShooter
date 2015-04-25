@@ -55,14 +55,14 @@ public class Level1 : MonoBehaviour {
 						else
 						{
 							beginFinalWave();
-							wDisp.text = "Wave: " + totalWaves.ToString() + " Enemy: Boss";
+							wDisp.text = "Wave: " + totalWaves.ToString() + "   Enemy: Boss";
 						}
 					}
 				}
 			}
 			else
 			{
-				wDisp.text = "Wave: " + wave.ToString() + " Enemies Left: " + enemiesLeft.ToString();
+				wDisp.text = "Wave: " + wave.ToString() + "   Enemies Left: " + enemiesLeft.ToString();
 			}
 		}
 	}
