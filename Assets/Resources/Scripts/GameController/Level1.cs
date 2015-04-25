@@ -55,6 +55,7 @@ public class Level1 : MonoBehaviour {
 						else
 						{
 							beginFinalWave();
+							wDisp.text = "Wave: " + totalWaves.ToString() + " Enemy: Boss";
 						}
 					}
 				}
@@ -104,10 +105,23 @@ public class Level1 : MonoBehaviour {
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/PurpleEnemy");
-		Vector3 spawnPos = new Vector3 (
-				Random.Range (spawnBound.xMin, spawnBound.xMax), 
+		Vector3 spawnPos = Vector3.zero;
+		if (player != null) {
+			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
+			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
+				//get a new xval
+				xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
+			}
+			float zVal = Random.Range (spawnBound.zMin, spawnBound.zMax);
+			while (player.transform.position.z - zVal < 5.5 && player.transform.position.z - zVal > -5.5) {
+				//get a new zval
+				zVal = Random.Range (spawnBound.zMin, spawnBound.zMax);
+			}
+			spawnPos = new Vector3 (
+				xVal, 
 				0.0f,
-			Random.Range (spawnBound.zMin, spawnBound.zMax));
+			zVal);
+		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		if(player != null)
 			newEnemy.GetComponent<TrackTo> ().target = player.transform;
@@ -116,10 +130,23 @@ public class Level1 : MonoBehaviour {
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/GreenEnemy");
-		Vector3 spawnPos = new Vector3 (
-			Random.Range (spawnBound.xMin, spawnBound.xMax), 
-			0.0f,
-			Random.Range (spawnBound.zMin, spawnBound.zMax));
+		Vector3 spawnPos = Vector3.zero;
+		if (player != null) {
+			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
+			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
+				//get a new xval
+				xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
+			}
+			float zVal = Random.Range (spawnBound.zMin, spawnBound.zMax);
+			while (player.transform.position.z - zVal < 5.5 && player.transform.position.z - zVal > -5.5) {
+				//get a new zval
+				zVal = Random.Range (spawnBound.zMin, spawnBound.zMax);
+			}
+			spawnPos = new Vector3 (
+				xVal, 
+				0.0f,
+				zVal);
+		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		if(player != null)
 			newEnemy.GetComponent<TrackTo2nd> ().target = player.transform;
@@ -128,10 +155,23 @@ public class Level1 : MonoBehaviour {
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/PurpleEnemy");
-		Vector3 spawnPos = new Vector3 (
-			Random.Range (spawnBound.xMin, spawnBound.xMax), 
-			0.0f,
-			Random.Range (spawnBound.zMin, spawnBound.zMax));
+		Vector3 spawnPos = Vector3.zero;
+		if (player != null) {
+			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
+			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
+				//get a new xval
+				xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
+			}
+			float zVal = Random.Range (spawnBound.zMin, spawnBound.zMax);
+			while (player.transform.position.z - zVal < 5.5 && player.transform.position.z - zVal > -5.5) {
+				//get a new zval
+				zVal = Random.Range (spawnBound.zMin, spawnBound.zMax);
+			}
+			spawnPos = new Vector3 (
+				xVal, 
+				0.0f,
+				zVal);
+		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		if(player != null)
 			newEnemy.GetComponent<TrackTo> ().target = player.transform;
@@ -152,10 +192,23 @@ public class Level1 : MonoBehaviour {
 			ShootPredictively s = g.GetComponent<ShootPredictively> ();
 			s.target = r;
 		}
-		Vector3 spawnPos = new Vector3 (
-			Random.Range (spawnBound.xMin, spawnBound.xMax), 
-			0.0f,
-			Random.Range (spawnBound.zMin, spawnBound.zMax));
+		Vector3 spawnPos = Vector3.zero;
+		if (player != null) {
+			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
+			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
+				//get a new xval
+				xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
+			}
+			float zVal = Random.Range (spawnBound.zMin, spawnBound.zMax);
+			while (player.transform.position.z - zVal < 5.5 && player.transform.position.z - zVal > -5.5) {
+				//get a new zval
+				zVal = Random.Range (spawnBound.zMin, spawnBound.zMax);
+			}
+			spawnPos = new Vector3 (
+				xVal, 
+				0.0f,
+				zVal);
+		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		if(player != null)
 			newEnemy.GetComponent<TrackTo> ().target = player.transform;

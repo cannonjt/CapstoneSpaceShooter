@@ -81,6 +81,12 @@ public class FollowerBehavior : MonoBehaviour {
 		} else
 		{
 			//follower is offline
+			if (!friendly)
+			{
+				GameObject aExplosion =(GameObject)Resources.Load("Prefabs/VFX/Explosions/explosion_enemy");
+				Instantiate (aExplosion, this.transform.position, this.transform.rotation);
+				Destroy(this.gameObject);
+			}
 			gameObject.renderer.material.color = Color.gray;
 		}
 				
