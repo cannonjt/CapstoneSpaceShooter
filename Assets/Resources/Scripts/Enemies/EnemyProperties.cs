@@ -89,9 +89,25 @@ public class EnemyProperties : MonoBehaviour {
 						//hp
 						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/HealthPickUp");
 					}
+					else if (dropType <= 55.0f)
+					{
+						//speed
+						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/SpeedPickUp");
+					}
+					else if (dropType <= 75.0f)
+					{
+						//shotgun
+						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/ShotgunPickUp");
+					}
+					else if (dropType <= 90.0f)
+					{
+						//minigun
+						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/MinigunPickUp");
+					}
 					else
 					{
-						//nothing
+						//shockwave
+						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/ShockwavePickUp");
 					}
 				}
 				else if (dropType <= 30.0f)
