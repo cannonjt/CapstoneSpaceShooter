@@ -2070,7 +2070,7 @@ MonoBehaviour:
   patrolSpeed: 2
   chaseSpeed: 10
   thrustSpeed: 5
-  minDist: 3
+  minDist: 2
   maxDist: 8
   shootDist: 0
   target: {fileID: 180724958}
@@ -2432,7 +2432,7 @@ MonoBehaviour:
   patrolSpeed: 2
   chaseSpeed: 10
   thrustSpeed: 5
-  minDist: 3
+  minDist: 2
   maxDist: 8
   shootDist: 0
   target: {fileID: 0}
@@ -5548,7 +5548,7 @@ MonoBehaviour:
   patrolSpeed: 2
   chaseSpeed: 10
   thrustSpeed: 5
-  minDist: 3
+  minDist: 2
   maxDist: 8
   shootDist: 0
   target: {fileID: 0}

@@ -41,7 +41,7 @@ public class TrackTo2nd : MonoBehaviour {
 				Vector3 track = target.position - transform.position;
 				
 				Quaternion wantDir = Quaternion.LookRotation (track, Vector3.up); 
-				Quaternion newRotation = Quaternion.RotateTowards (rigidbody.rotation, wantDir, 120 * Time.deltaTime);
+				Quaternion newRotation = Quaternion.RotateTowards (rigidbody.rotation, wantDir, 240 * Time.deltaTime);
 				
 				
 				//look in the direction of the player
