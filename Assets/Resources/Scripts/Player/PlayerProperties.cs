@@ -13,6 +13,7 @@ public class PlayerProperties : MonoBehaviour {
 	public float shieldRechargeTime;
 	public float shieldRechargeRate;
 	public float invPeriod;//period where the player is invicible after taking damage
+	public GameObject gameOverText; //text that will display when the player dies
 
 	private float lastDamage;
 	private GameObject explosion;
@@ -66,7 +67,7 @@ public class PlayerProperties : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "EnemyProjectile") {
+		if (other.tag == "EnemyProjectile" || other.tag == "KillerProjectile") {
 			//Projectiles have damagers. I know, workaroundy, but best I could do
 			GameObject bullet = other.gameObject;
 			Damager theThing = bullet.GetComponent<Damager>();
@@ -115,6 +116,7 @@ public class PlayerProperties : MonoBehaviour {
 
 			if (health <= 0) {
 				hSlider.value = 0;
+				gameOverText.SetActive (true);
 				gameObject.SetActive (false);
 				Instantiate (explosion, transform.position, transform.rotation);
 			}

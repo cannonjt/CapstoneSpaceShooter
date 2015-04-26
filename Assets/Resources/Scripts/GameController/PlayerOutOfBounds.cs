@@ -34,7 +34,11 @@ public class PlayerOutOfBounds : MonoBehaviour {
 	void Update () {
 		float currentDist = getDistanceToPlayer ();
 
-		if (currentDist > maxPlayerDist) {
+		if (player.activeInHierarchy != true) {
+			warningText.SetActive(false);
+			audio.Stop ();
+		}
+		else if (currentDist > maxPlayerDist) {
 			shootScript.enabled = true;
 			warningText.SetActive(true);
 

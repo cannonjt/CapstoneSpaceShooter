@@ -1568,6 +1568,7 @@ MonoBehaviour:
   shieldRechargeTime: 2
   shieldRechargeRate: 10
   invPeriod: .0500000007
+  gameOverText: {fileID: 242577922}
 --- !u!1 &184024945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,6 +1711,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1 &242577922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 242577923}
+  - 222: {fileID: 242577925}
+  - 114: {fileID: 242577924}
+  m_Layer: 5
+  m_Name: GameOverText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &242577923
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 242577922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1902370187}
+  m_RootOrder: 3
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 350, y: 150}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &242577924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 242577922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 2daffacdadd143d42a5479e93ed74871, type: 3}
+    m_FontSize: 65
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Game Over! \nPress 'K' to restart"
+--- !u!222 &242577925
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 242577922}
 --- !u!1 &251854242
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,7 +2133,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 871080567}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!23 &451809817
 Renderer:
   m_ObjectHideFlags: 0
@@ -3897,8 +3964,8 @@ Transform:
   m_Children:
   - {fileID: 1509359936}
   - {fileID: 1271778287}
-  - {fileID: 1226877164}
   - {fileID: 451809816}
+  - {fileID: 1226877164}
   m_Father: {fileID: 0}
   m_RootOrder: 6
 --- !u!82 &871080568
@@ -4001,7 +4068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0191cae1eca8a48b56f89133d01050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: .0500000007
+  spawnRate: .150000006
   maxAsteroids: 50
   spawnBound:
     xMax: 0
@@ -4330,7 +4397,7 @@ GameObject:
   - 222: {fileID: 1018636815}
   - 114: {fileID: 1018636814}
   m_Layer: 5
-  m_Name: Text
+  m_Name: OutOfBoundsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4502,6 +4569,10 @@ Prefab:
       propertyPath: spdSlider
       value: 
       objectReference: {fileID: 1348802709}
+    - target: {fileID: 11445890, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
+      propertyPath: gameOverText
+      value: 
+      objectReference: {fileID: 242577922}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab5b74469f3524d4fbee439fb6ff2bc1, type: 2}
   m_RootGameObject: {fileID: 180724957}
@@ -4737,7 +4808,7 @@ Transform:
   - {fileID: 1902370187}
   - {fileID: 962391017}
   m_Father: {fileID: 871080567}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1232642198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4792,7 +4863,7 @@ Transform:
   m_GameObject: {fileID: 1271778286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 200, y: 5, z: 150}
+  m_LocalScale: {x: 100, y: 5, z: 100}
   m_Children: []
   m_Father: {fileID: 871080567}
   m_RootOrder: 1
@@ -8173,6 +8244,7 @@ RectTransform:
   - {fileID: 2078526825}
   - {fileID: 1651123540}
   - {fileID: 1018636813}
+  - {fileID: 242577923}
   m_Father: {fileID: 1226877164}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
