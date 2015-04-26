@@ -1936,6 +1936,7 @@ MonoBehaviour:
   colors:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
+  flashingModel: {fileID: 0}
   invToPirece: 0
   invLength: 0
   dropRate: 10
@@ -2500,6 +2501,7 @@ MonoBehaviour:
   colors:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
+  flashingModel: {fileID: 0}
   invToPirece: 0
   invLength: 0
   dropRate: 10
@@ -5344,7 +5346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &509996124
 Transform:
   m_ObjectHideFlags: 0
@@ -5447,6 +5449,7 @@ MonoBehaviour:
   colors:
   - {r: 1, g: .513793111, b: .25, a: 0}
   - {r: 1, g: 1, b: 1, a: 0}
+  flashingModel: {fileID: 2094568274}
   invToPirece: 0
   invLength: 0
   dropRate: 0
@@ -5616,6 +5619,7 @@ MonoBehaviour:
   colors:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
+  flashingModel: {fileID: 0}
   invToPirece: 0
   invLength: 0
   dropRate: 10
@@ -5756,6 +5760,7 @@ MonoBehaviour:
   maxHealth: 200
   explosion: {fileID: 0}
   colors: []
+  flashingModel: {fileID: 0}
   invToPirece: 0
   invLength: 0
   dropRate: 0
@@ -6515,6 +6520,7 @@ MonoBehaviour:
   colors:
   - {r: 1, g: .242647052, b: .791074932, a: 0}
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
+  flashingModel: {fileID: 0}
   invToPirece: 0
   invLength: 0
   dropRate: 17
@@ -9522,6 +9528,7 @@ MonoBehaviour:
   colors:
   - {r: 1, g: .198529422, b: .812068939, a: 0}
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
+  flashingModel: {fileID: 0}
   invToPirece: 0
   invLength: 0
   dropRate: 20
@@ -11466,8 +11473,12 @@ Prefab:
       objectReference: {fileID: 180724959}
     - target: {fileID: 147736, guid: 27c56b8fceb138e4b9a82a2e93bbc21e, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11447738, guid: 27c56b8fceb138e4b9a82a2e93bbc21e, type: 2}
+      propertyPath: flashingModel
+      value: 
+      objectReference: {fileID: 2094568274}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27c56b8fceb138e4b9a82a2e93bbc21e, type: 2}
   m_RootGameObject: {fileID: 509996123}
@@ -13950,6 +13961,7 @@ MonoBehaviour:
   colors:
   - {r: 1, g: .242647052, b: .791074932, a: 0}
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
+  flashingModel: {fileID: 0}
   invToPirece: 0
   invLength: 0
   dropRate: 17

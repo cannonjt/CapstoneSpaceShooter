@@ -6,6 +6,7 @@ public class EnemyProperties : MonoBehaviour {
 	public float maxHealth;
 	public GameObject explosion;
 	public Color[] colors;
+	public GameObject flashingModel;
 
 	[HideInInspector]
 	public bool invToPirece;
@@ -147,11 +148,17 @@ public class EnemyProperties : MonoBehaviour {
 
 	IEnumerator flashRed()
 	{
+		GameObject currentFlash;
+		if (flashingModel != null)
+						currentFlash = flashingModel;
+		else currentFlash = gameObject;
+
 		if(colors.Length >= 2)
 		{
-			renderer.material.color = colors[0];
+
+			currentFlash.renderer.material.color = colors[0];
 			yield return new WaitForSeconds(0.05f);
-			renderer.material.color = colors[1];
+			currentFlash.renderer.material.color = colors[1];
 		}
 	}
 
