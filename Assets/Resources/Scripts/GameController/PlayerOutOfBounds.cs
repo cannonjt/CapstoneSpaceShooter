@@ -6,6 +6,7 @@ public class PlayerOutOfBounds : MonoBehaviour {
 	public float maxPlayerDist;
 	public float warningDist;
 	public GameObject warningText;
+	public Transform boundaryCircle;
 
 	private GameObject player;
 	private ShootPredictively shootScript;
@@ -17,6 +18,16 @@ public class PlayerOutOfBounds : MonoBehaviour {
 		shootScript = gameObject.GetComponent<ShootPredictively>();
 		shootScript.enabled = false;
 		audioVol = 0f;
+
+		//set up the boundary circle and its transparency
+		if (boundaryCircle != null) {
+			boundaryCircle.transform.localScale = new Vector3(warningDist * 2f, warningDist * 2f, 1f);
+			Color transColor = boundaryCircle.renderer.material.color;
+			transColor.a = 0.25f;
+			boundaryCircle.renderer.material.color = transColor;
+		}
+
+
 	}
 	
 	// Update is called once per frame
