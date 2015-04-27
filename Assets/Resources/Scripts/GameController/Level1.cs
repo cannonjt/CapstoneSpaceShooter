@@ -31,6 +31,9 @@ public class Level1 : MonoBehaviour {
 	void Update () {
 		//Update timer
 		timer = Time.time;
+		//If player is dead, don't want to update
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		if (player == null) {return;}
 		//Are we in boss wave?
 		if (wave == totalWaves) 
 		{
@@ -140,10 +143,10 @@ public class Level1 : MonoBehaviour {
 	private void spawnEnemy()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		if (player == null) {return;}
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/PurpleEnemy");
 		Vector3 spawnPos = Vector3.zero;
 		//If there's a player, we need to make sure the enemies won't spawn in the player's fov.
-		if (player != null) {
 			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
 			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
 				//get a new xval
@@ -158,19 +161,17 @@ public class Level1 : MonoBehaviour {
 				xVal, 
 				0.0f,
 			zVal);
-		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		//Make sure they track the player!
-		if(player != null)
-			newEnemy.GetComponent<TrackTo> ().target = player.transform;
+		newEnemy.GetComponent<TrackTo> ().target = player.transform;
 	}
 	private void spawnEnemy2()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		if (player == null) {return;}
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/GreenEnemy");
 		Vector3 spawnPos = Vector3.zero;
 		//If there's a player, we need to make sure the enemies won't spawn in the player's fov.
-		if (player != null) {
 			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
 			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
 				//get a new xval
@@ -185,19 +186,17 @@ public class Level1 : MonoBehaviour {
 				xVal, 
 				0.0f,
 				zVal);
-		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		//Make sure they track the player!
-		if(player != null)
 			newEnemy.GetComponent<TrackTo2nd> ().target = player.transform;
 	}
 	private void spawnPair()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		if (player == null) {return;}
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/PurpleEnemy");
 		Vector3 spawnPos = Vector3.zero;
 		//If there's a player, we need to make sure the enemies won't spawn in the player's fov.
-		if (player != null) {
 			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
 			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
 				//get a new xval
@@ -212,10 +211,8 @@ public class Level1 : MonoBehaviour {
 				xVal, 
 				0.0f,
 				zVal);
-		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		//Make sure they track the player!
-		if(player != null)
 			newEnemy.GetComponent<TrackTo> ().target = player.transform;
 		//The follower is a lot easier to instantiate, since it will spawn next to it's parent
 		GameObject follower = (GameObject)Resources.Load ("Prefabs/Enemies/EnemyFollower");
@@ -226,19 +223,16 @@ public class Level1 : MonoBehaviour {
 	private void spawnBoss()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		if (player == null) {return;}
 		GameObject spawningShip = (GameObject)Resources.Load ("Prefabs/Enemies/Boss");
 		//This portion is for the predictive cannon the boss has
-		if (player != null) 
-		{
 			Rigidbody r = player.GetComponent<Rigidbody> ();
 			Transform t = spawningShip.transform;
 			GameObject g = t.GetChild (1).gameObject;
 			ShootPredictively s = g.GetComponent<ShootPredictively> ();
 			s.target = r;
-		}
 		Vector3 spawnPos = Vector3.zero;
 		//If there's a player, we need to make sure the enemies won't spawn in the player's fov.
-		if (player != null) {
 			float xVal = Random.Range (spawnBound.xMin, spawnBound.xMax);
 			while (player.transform.position.x - xVal < 5.5 && player.transform.position.x - xVal > -5.5) {
 				//get a new xval
@@ -253,10 +247,8 @@ public class Level1 : MonoBehaviour {
 				xVal, 
 				0.0f,
 				zVal);
-		}
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		//Make sure they track the player!
-		if(player != null)
 			newEnemy.GetComponent<TrackTo> ().target = player.transform;
 
 	}
