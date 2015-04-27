@@ -30,10 +30,10 @@ GameObject:
   - 23: {fileID: 2300002}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400002}
-  - 136: {fileID: 13600000}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
+  - 136: {fileID: 13688190}
   m_Layer: 0
   m_Name: StationaryAsteroid
   m_TagString: Asteroid
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 75
+  maxHealth: 40
   explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 2}
   colors:
   - {r: 1, g: .152941182, b: .650980413, a: 0}
@@ -202,17 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633ed183b829c894a9a60016dde1f55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 40
-  explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 2}
-  colors:
-  - {r: 1, g: .152941182, b: .650980413, a: 0}
-  - {r: .996078432, g: .486274511, b: .913725495, a: 0}
-  invToPirece: 0
-  invLength: 0
 --- !u!136 &13688190
 CapsuleCollider:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
