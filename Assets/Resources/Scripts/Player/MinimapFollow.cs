@@ -13,7 +13,7 @@ public class MinimapFollow : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		Vector3 PlayerPOS = player.transform.transform.position;
-		GameObject.Find("MinimapCamera").transform.position = new Vector3(PlayerPOS.x, 10, PlayerPOS.z);
+		GameObject.Find("Radar").transform.position = new Vector3(PlayerPOS.x, 10, PlayerPOS.z);
 		
 	}
 }
