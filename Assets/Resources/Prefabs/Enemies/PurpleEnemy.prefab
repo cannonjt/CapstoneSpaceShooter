@@ -189,6 +189,7 @@ MonoBehaviour:
   colors:
   - {r: 1, g: .242647052, b: .791074932, a: 0}
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
+  flashingModel: {fileID: 0}
   invToPirece: 0
   invLength: 0
   dropRate: 17
