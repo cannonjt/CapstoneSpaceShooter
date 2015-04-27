@@ -4,17 +4,8 @@ using System.Collections;
 public class mainMenuController : MonoBehaviour {
 	public GameObject playButton;
 	public GameObject quitButton;
+	public GameObject infoButton;
 	public GameObject loadingText;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	public void playButtonClicked(){
 		loadingText.SetActive (true);
@@ -22,5 +13,9 @@ public class mainMenuController : MonoBehaviour {
 	}
 	public void quitButtonClicked(){
 		Application.Quit ();
+	}
+
+	public void infoButtonClicked(){
+		Application.LoadLevel("ControlsMenu");
 	}
 }
