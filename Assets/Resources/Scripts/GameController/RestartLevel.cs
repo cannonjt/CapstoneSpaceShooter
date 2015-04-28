@@ -8,5 +8,9 @@ public class RestartLevel : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.K) == true) {
 			Application.LoadLevel("Level1");
 		}
+
+		if (Input.GetKeyDown (KeyCode.B) == true) {
+			Application.LoadLevel ("BossDemo");
+		}
 	}
 }
