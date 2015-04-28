@@ -30,11 +30,11 @@ GameObject:
   - 95: {fileID: 9522496}
   - 54: {fileID: 5422496}
   - 114: {fileID: 11422496}
-  - 64: {fileID: 6422496}
   - 114: {fileID: 11422500}
   - 114: {fileID: 11422504}
   - 114: {fileID: 11422502}
   - 114: {fileID: 11422498}
+  - 136: {fileID: 13626482}
   m_Layer: 0
   m_Name: GreenEnemy
   m_TagString: Enemy
@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 1.08456504}
+  m_LocalPosition: {x: -5.61965418, y: 27.6587429, z: -10.1100979}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 422498}
@@ -164,19 +164,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!64 &6422496
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122496}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: 247766e192f437c4680b63372b7cb017, type: 3}
 --- !u!95 &9522496
 Animator:
   serializedVersion: 3
@@ -276,6 +263,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   destroyOnHit: 0
+--- !u!136 &13626482
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .119999997
+  m_Height: .25999999
+  m_Direction: 2
+  m_Center: {x: 0, y: -5.58793545e-09, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
