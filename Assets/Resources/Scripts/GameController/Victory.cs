@@ -10,6 +10,7 @@ public class Victory : MonoBehaviour {
 
 	IEnumerator loadVictory(){
 		yield return new WaitForSeconds(5f);
-		Application.LoadLevel ("VictoryMenu");
+		if (GameObject.FindGameObjectsWithTag("Player").Length > 0)
+			Application.LoadLevel ("VictoryMenu");
 	}
 }

@@ -22,7 +22,7 @@ public class RestartLevel : MonoBehaviour {
 		{
 			if (Time.timeScale == 1)
 			{
-				if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+				if (GameObject.FindGameObjectsWithTag("Player").Length > 0)
 				{
 					unpause();
 					Application.LoadLevel("mainMenu");
@@ -39,7 +39,7 @@ public class RestartLevel : MonoBehaviour {
 			else
 			{
 				unpause();
-				if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+				if (GameObject.FindGameObjectsWithTag("Player").Length > 0)
 				{
 					Application.LoadLevel("mainMenu");
 				}

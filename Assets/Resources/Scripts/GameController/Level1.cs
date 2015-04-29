@@ -45,16 +45,6 @@ public class Level1 : MonoBehaviour {
 		//Are we in boss wave?
 		if (wave == totalWaves) 
 		{
-			//Is the boss alive? If not, we've won
-			bool bossAlive = (GameObject.FindGameObjectsWithTag("Boss").Length > 0);
-			if (bossAlive)
-			{
-				//do nothing
-			}
-			else
-			{
-				print ("We win!");
-			}
 			return;
 		}
 		//Count # of enemies left. Will be important in determining if we can proceed to next wave
