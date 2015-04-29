@@ -18,6 +18,7 @@ public class EnemyProperties : MonoBehaviour {
 	public float dropRate;
 
 	private FollowerBehavior followerInfo;
+	private bool dropped;
 
 	//Variables for radar
 	private int enemyID;
@@ -27,6 +28,7 @@ public class EnemyProperties : MonoBehaviour {
 	{
 		health = maxHealth;
 		radar = GameObject.Find ("Radar");
+		dropped = false;
 	}
 
 
@@ -79,28 +81,55 @@ public class EnemyProperties : MonoBehaviour {
 		if (health <= 0) {
 
 			removeEnemyFromRadar();
-
-			float dropCheck = Random.Range (1.0f,101.0f);
-			if (dropRate >= dropCheck)
+			if (!dropped)
 			{
-				//dropping an item
-				//first, choose which
-				GameObject powerup = null;
-				float dropType = Random.Range (1.0f,101.0f);
-				bool followerExists = (GameObject.FindGameObjectsWithTag("Follower").Length >= 1);
-				if (!followerExists)
+				dropped = true;
+				float dropCheck = Random.Range (1.0f,101.0f);
+				if (dropRate >= dropCheck)
 				{
-					if (dropType <= 5.0f)
+					//dropping an item
+					//first, choose which
+					GameObject powerup = null;
+					float dropType = Random.Range (1.0f,101.0f);
+					bool followerExists = (GameObject.FindGameObjectsWithTag("Follower").Length >= 1);
+					if (!followerExists)
 					{
-						//follower
-						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/FollowerPickUp");
+						if (dropType <= 5.0f)
+						{
+							//follower
+							powerup = (GameObject)Resources.Load ("Prefabs/PickUps/FollowerPickUp");
+						}
+						else if (dropType <= 30.0f)
+						{
+							//hp
+							powerup = (GameObject)Resources.Load ("Prefabs/PickUps/HealthPickUp");
+						}
+						else if (dropType <= 55.0f)
+						{
+							//speed
+							powerup = (GameObject)Resources.Load ("Prefabs/PickUps/SpeedPickUp");
+						}
+						else if (dropType <= 75.0f)
+						{
+							//shotgun
+							powerup = (GameObject)Resources.Load ("Prefabs/PickUps/ShotgunPickUp");
+						}
+						else if (dropType <= 90.0f)
+						{
+							//minigun
+							powerup = (GameObject)Resources.Load ("Prefabs/PickUps/MinigunPickUp");
+						}
+						else
+						{
+							//shockwave
+							powerup = (GameObject)Resources.Load ("Prefabs/PickUps/ShockwavePickUp");
+						}
 					}
 					else if (dropType <= 30.0f)
 					{
 						//hp
 						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/HealthPickUp");
-					}
-					else if (dropType <= 55.0f)
+					} else if (dropType <= 55.0f)
 					{
 						//speed
 						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/SpeedPickUp");
@@ -118,35 +147,11 @@ public class EnemyProperties : MonoBehaviour {
 					else
 					{
 						//shockwave
-						powerup = (GameObject)Resources.Load ("Prefabs/PickUps/ShockwavePickUp");
-					}
-				}
-				else if (dropType <= 30.0f)
-				{
-					//hp
-					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/HealthPickUp");
-				} else if (dropType <= 55.0f)
-				{
-					//speed
-					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/SpeedPickUp");
-				}
-				else if (dropType <= 75.0f)
-				{
-					//shotgun
-					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/ShotgunPickUp");
-				}
-				else if (dropType <= 90.0f)
-				{
-					//minigun
-					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/MinigunPickUp");
-				}
-				else
-				{
-					//shockwave
 					powerup = (GameObject)Resources.Load ("Prefabs/PickUps/ShockwavePickUp");
 				}
 				Vector3 spawnPos = gameObject.rigidbody.position;
 				Instantiate (powerup, spawnPos, Quaternion.identity);
+				}
 			}
 			if(explosion != null)
 				Instantiate (explosion, transform.position, transform.rotation);
