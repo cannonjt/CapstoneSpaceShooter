@@ -191,7 +191,9 @@ public class EnemyProperties : MonoBehaviour {
 
 	//Removes this enemy from being tracked on the radar
 	private void removeEnemyFromRadar(){
-		radar.GetComponent<Radar> ().removeEnemy (enemyID);
+		if (radar != null) {
+			radar.GetComponent<Radar> ().removeEnemy (enemyID);
+		}
 	}
 
 	public GameObject getIconChild(){
