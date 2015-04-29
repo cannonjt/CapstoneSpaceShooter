@@ -21,11 +21,19 @@ public class Level1 : MonoBehaviour {
 	//Keeps track of the time
 	private float timer;
 
+	//GameObject variable to interact with the radar
+	private GameObject radar;
+
+	//Keeps track of enemy number to assign unique ID
+	private int currentEnemyID;
+
 	void Start () {
 		//Initialize some necessary variables
 		wave = 0;
 		check = false;
 		initialCooldown = Time.time + initialCooldown;
+		radar = GameObject.Find ("Radar");
+		currentEnemyID = 0;
 	}
 
 	void Update () {
@@ -133,12 +141,15 @@ public class Level1 : MonoBehaviour {
 			spawnPair();
 		}
 	}
+
+	//Private method to spawn the boss
 	private void beginFinalWave()
 	{
 		//Spawn the boss!
 		wave = totalWaves;
 		spawnBoss ();
 	}
+
 	//Method to spawn a basic enemy.
 	private void spawnEnemy()
 	{
@@ -164,6 +175,9 @@ public class Level1 : MonoBehaviour {
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		//Make sure they track the player!
 		newEnemy.GetComponent<TrackTo> ().target = player.transform;
+
+		//Adds the new enemy to the radar track Hashtable
+		addEnemyToRadar (newEnemy);
 	}
 	private void spawnEnemy2()
 	{
@@ -189,7 +203,11 @@ public class Level1 : MonoBehaviour {
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		//Make sure they track the player!
 			newEnemy.GetComponent<TrackTo2nd> ().target = player.transform;
+
+		//Adds the new enemy to the radar track Hashtable
+		addEnemyToRadar (newEnemy);
 	}
+
 	private void spawnPair()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -219,7 +237,11 @@ public class Level1 : MonoBehaviour {
 		GameObject newF = (GameObject)Instantiate (follower, spawnPos, Quaternion.identity);
 		FollowerBehavior fBeh = newF.GetComponent<FollowerBehavior> ();
 		fBeh.leader = newEnemy.transform;
+
+		//Adds the new enemy to the radar track Hashtable
+		addEnemyToRadar (newEnemy);
 	}
+
 	private void spawnBoss()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -249,7 +271,15 @@ public class Level1 : MonoBehaviour {
 				zVal);
 		GameObject newEnemy = (GameObject)Instantiate (spawningShip, spawnPos, Quaternion.identity);
 		//Make sure they track the player!
-			newEnemy.GetComponent<TrackTo> ().target = player.transform;
+		newEnemy.GetComponent<TrackTo> ().target = player.transform;
 
+		//Adds the new enemy to the radar track Hashtable
+		addEnemyToRadar (newEnemy);
+	}
+
+	private void addEnemyToRadar(GameObject currentEnemy){
+		currentEnemy.GetComponent<EnemyProperties> ().setEnemyID (currentEnemyID);
+		radar.GetComponent<Radar> ().addEnemy (currentEnemyID, currentEnemy);
+		currentEnemyID++;
 	}
 }

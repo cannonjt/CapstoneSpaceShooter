@@ -197,6 +197,7 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: .996078432, g: .996078432, b: .996078432, a: 0}
   flashingModel: {fileID: 0}
+  enemyIconChild: {fileID: 100000}
   invToPirece: 0
   invLength: 0
   dropRate: 10

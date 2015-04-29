@@ -7,6 +7,7 @@ public class EnemyProperties : MonoBehaviour {
 	public GameObject explosion;
 	public Color[] colors;
 	public GameObject flashingModel;
+	public GameObject enemyIconChild;
 
 	[HideInInspector]
 	public bool invToPirece;
@@ -17,11 +18,18 @@ public class EnemyProperties : MonoBehaviour {
 	public float dropRate;
 
 	private FollowerBehavior followerInfo;
+
+	//Variables for radar
+	private int enemyID;
+	private GameObject radar;
+
 	void Start()
 	{
 		health = maxHealth;
-
+		radar = GameObject.Find ("Radar");
 	}
+
+
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.tag == "Projectile") 
@@ -69,6 +77,8 @@ public class EnemyProperties : MonoBehaviour {
 	{
 		health -= damage;
 		if (health <= 0) {
+
+			removeEnemyFromRadar();
 
 			float dropCheck = Random.Range (1.0f,101.0f);
 			if (dropRate >= dropCheck)
@@ -168,5 +178,23 @@ public class EnemyProperties : MonoBehaviour {
 		{
 			invToPirece = false;
 		}
+	}
+
+	//Sets the enemy ID
+	public void setEnemyID( int newID ){
+		enemyID = newID;
+	}
+
+	public int getEnemyID(){
+		return enemyID;
+	}
+
+	//Removes this enemy from being tracked on the radar
+	private void removeEnemyFromRadar(){
+		radar.GetComponent<Radar> ().removeEnemy (enemyID);
+	}
+
+	public GameObject getIconChild(){
+		return enemyIconChild;
 	}
 }
