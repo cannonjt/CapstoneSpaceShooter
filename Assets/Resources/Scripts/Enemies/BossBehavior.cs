@@ -30,4 +30,10 @@ public class BossBehavior : MonoBehaviour {
 		distance = Vector3.Distance (player.position, transform.position);
 		return distance;
 	}
+
+	void OnDestroy(){
+		GameObject.Find ("GameController").GetComponent<Victory>().victory ();
+	}
+
+
 }
