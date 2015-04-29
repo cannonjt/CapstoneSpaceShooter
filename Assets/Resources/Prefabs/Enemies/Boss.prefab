@@ -506,7 +506,7 @@ MonoBehaviour:
   patrolSpeed: 10
   chaseSpeed: 30
   thrustSpeed: 80
-  minDist: 3
+  minDist: 6
   maxDist: 24
   shootDist: 0
   target: {fileID: 0}
