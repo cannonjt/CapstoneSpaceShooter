@@ -9,10 +9,12 @@ public class RestartLevel : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.K) == true) {
+			unpause();
 			Application.LoadLevel("Level1");
 		}
 
 		if (Input.GetKeyDown (KeyCode.B) == true) {
+			unpause();
 			Application.LoadLevel ("BossDemo");
 		}
 
@@ -30,15 +32,19 @@ public class RestartLevel : MonoBehaviour {
 			}
 			else
 			{
-				isPaused = false;
-				Image blue = GameObject.Find("Blueness").GetComponent<Image>();
-				Color c = blue.color;
-				c.a = 0;
-				blue.color = c;
-				pauseText.SetActive(false);
-				Time.timeScale = 1;
+				unpause();
 			}
 		}
 
+	}
+	public void unpause()
+	{
+		isPaused = false;
+		Image blue = GameObject.Find("Blueness").GetComponent<Image>();
+		Color c = blue.color;
+		c.a = 0;
+		blue.color = c;
+		pauseText.SetActive(false);
+		Time.timeScale = 1;
 	}
 }
