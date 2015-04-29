@@ -43,7 +43,12 @@ public class Weapon : MonoBehaviour {
 			               || Input.GetAxisRaw("FireVertical") != 0);
 			if (firing && Time.time > shotProperties.nextFire) {
 
-
+				RestartLevel r = GameObject.Find("GameController").GetComponent<RestartLevel>();
+				if (r.isPaused)
+				{
+					//can't fire while paused, sorry
+					return;
+				}
 					if(burst && burstCounter >= shotProperties.burst){ //player shot all shots for burst
 						if(Time.time > shotProperties.nextBurst){ //time between bursts has happened
 							burstCounter = 0; //reset the burst
