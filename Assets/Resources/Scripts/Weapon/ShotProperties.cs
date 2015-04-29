@@ -14,6 +14,7 @@ public class ShotProperties{
 	public float burstWait; //the wait time in between each burst
 	public float range;
 	public bool destroyOnHit;
+	public bool oneLoop;
 
 
 	[HideInInspector]

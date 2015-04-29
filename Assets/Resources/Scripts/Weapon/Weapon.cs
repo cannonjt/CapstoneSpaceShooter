@@ -39,9 +39,9 @@ public class Weapon : MonoBehaviour {
 	{
 		//print (shotProperties.shotSpawn);
 		if (user.tag == "Player") {
-
-			if ((Input.GetButton ("Fire1") || Input.GetAxisRaw ("FireHorizontal") != 0 
-			     || Input.GetAxisRaw("FireVertical") != 0) && Time.time > shotProperties.nextFire) {
+			bool firing = (Input.GetButton ("Fire1") || Input.GetAxisRaw ("FireHorizontal") != 0 
+			               || Input.GetAxisRaw("FireVertical") != 0);
+			if (firing && Time.time > shotProperties.nextFire) {
 
 
 					if(burst && burstCounter >= shotProperties.burst){ //player shot all shots for burst
@@ -73,11 +73,26 @@ public class Weapon : MonoBehaviour {
 							{
 								shotProperties.ammo--;
 								spawnBullet ();
-								audio.Play ();
+								if (shotProperties.oneLoop)
+									audio.Play ();
+								else
+								{
+									if (!audio.isPlaying)
+									{
+										audio.Play ();
+									}
+								}
 							}
 						}
 					}
 				}
+			else if (!firing)
+			{
+				if (!shotProperties.oneLoop && audio.isPlaying)
+				{
+					audio.Stop();
+				}
+			}
 		} else
 		ungatedShoot ();
 	}
