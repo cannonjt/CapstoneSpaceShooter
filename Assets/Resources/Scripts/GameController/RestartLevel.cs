@@ -22,6 +22,12 @@ public class RestartLevel : MonoBehaviour {
 		{
 			if (Time.timeScale == 1)
 			{
+				if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+				{
+					unpause();
+					Application.LoadLevel("mainMenu");
+					return;
+				}
 				isPaused = true;
 				Image blue = GameObject.Find("Blueness").GetComponent<Image>();
 				Color c = blue.color;
@@ -33,6 +39,10 @@ public class RestartLevel : MonoBehaviour {
 			else
 			{
 				unpause();
+				if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+				{
+					Application.LoadLevel("mainMenu");
+				}
 			}
 		}
 
