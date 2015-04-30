@@ -30,6 +30,10 @@ public class TrackTo2nd : MonoBehaviour {
 	}
 	
 	void Update(){
+		GameObject gc = GameObject.Find ("GameController");
+		RestartLevel r = gc.GetComponent<RestartLevel> ();
+		if (r.isPaused)
+			return;
 		if (target != null) {
 			
 			float howFar = getDistance ();
