@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//Modified from the code in this video https://www.youtube.com/watch?v=O8is_EikILA
+
+using UnityEngine;
 using System.Collections;
 
 public class Radar : MonoBehaviour {
