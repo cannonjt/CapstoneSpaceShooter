@@ -217,8 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolSpeed: 2
-  chaseSpeed: 4
-  thrustSpeed: 20
+  chaseSpeed: 6
+  thrustSpeed: 30
   minDist: 6
   maxDist: 15
   shootDist: 0

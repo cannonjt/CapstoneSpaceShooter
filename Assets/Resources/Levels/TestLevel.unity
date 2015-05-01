@@ -2039,7 +2039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &186838008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6776,7 +6776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &827460014
 Transform:
   m_ObjectHideFlags: 0
@@ -6901,8 +6901,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolSpeed: 2
-  chaseSpeed: 4
-  thrustSpeed: 20
+  chaseSpeed: 6
+  thrustSpeed: 30
   minDist: 6
   maxDist: 15
   shootDist: 0
@@ -9702,14 +9702,14 @@ Prefab:
     - target: {fileID: 11439778, guid: b5284e5e6e3abc448a2616571c3d67bc, type: 2}
       propertyPath: leader
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2099052524}
     - target: {fileID: 5439778, guid: b5284e5e6e3abc448a2616571c3d67bc, type: 2}
       propertyPath: m_Drag
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 139780, guid: b5284e5e6e3abc448a2616571c3d67bc, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5284e5e6e3abc448a2616571c3d67bc, type: 2}
@@ -10016,7 +10016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1303822917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10036,7 +10036,7 @@ MonoBehaviour:
     maxRange: 5
     shootDist: 2
     rotationSpeed: 800
-  leader: {fileID: 0}
+  leader: {fileID: 2099052524}
   currentWep: {fileID: 11442720, guid: b5d0d60c50d287f498c9e333fd3e7537, type: 2}
 --- !u!136 &1303822918
 CapsuleCollider:
@@ -12507,7 +12507,7 @@ Prefab:
       objectReference: {fileID: 180724958}
     - target: {fileID: 122496, guid: 7008f292bd29a4c4db3833354a0c7010, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7008f292bd29a4c4db3833354a0c7010, type: 2}
@@ -13934,7 +13934,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 183580, guid: 6ad155fcbf1d20e43bdb142505dec1c2, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ad155fcbf1d20e43bdb142505dec1c2, type: 2}
@@ -14089,7 +14089,7 @@ Prefab:
       objectReference: {fileID: 180724958}
     - target: {fileID: 183580, guid: 6ad155fcbf1d20e43bdb142505dec1c2, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ad155fcbf1d20e43bdb142505dec1c2, type: 2}
@@ -14756,7 +14756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2099052524
 Transform:
   m_ObjectHideFlags: 0
@@ -14881,8 +14881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolSpeed: 2
-  chaseSpeed: 4
-  thrustSpeed: 20
+  chaseSpeed: 6
+  thrustSpeed: 30
   minDist: 6
   maxDist: 15
   shootDist: 0

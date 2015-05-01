@@ -17,11 +17,13 @@ public class TrackTo2nd : MonoBehaviour {
 	public float lengthOfSight = 2f;            // Distance in front of the entity that it can "see"
 	public bool objectDetected = false;	   // True if the entity "sees" an object and needs to change course
 	public float obstacleAngle;
-	
+
+	private GameObject gc;
 	
 	void Start(){
 		target = GameObject.FindGameObjectWithTag("Player").transform;
 		StartCoroutine(setSpawn());
+		gc = GameObject.Find ("GameController");
 	}
 	
 	IEnumerator setSpawn(){
@@ -29,8 +31,8 @@ public class TrackTo2nd : MonoBehaviour {
 		startPosition = transform.position;
 	}
 	
-	void Update(){
-		GameObject gc = GameObject.Find ("GameController");
+	void FixedUpdate(){
+
 		RestartLevel r = gc.GetComponent<RestartLevel> ();
 		if (r.isPaused)
 			return;

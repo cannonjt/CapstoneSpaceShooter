@@ -29,7 +29,7 @@ public class TrackTo : MonoBehaviour {
 		startPosition = transform.position;
 	}
 
-	void Update(){
+	void FixedUpdate(){
 		GameObject gc = GameObject.Find ("GameController");
 		RestartLevel r = gc.GetComponent<RestartLevel> ();
 		if (r.isPaused)
