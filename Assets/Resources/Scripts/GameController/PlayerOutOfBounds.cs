@@ -23,7 +23,7 @@ public class PlayerOutOfBounds : MonoBehaviour {
 		if (boundaryCircle != null) {
 			boundaryCircle.transform.localScale = new Vector3(warningDist * 2f, warningDist * 2f, 1f);
 			Color transColor = boundaryCircle.renderer.material.color;
-			transColor.a = 0.25f;
+			transColor.a = 0.5f;
 			boundaryCircle.renderer.material.color = transColor;
 		}
 
