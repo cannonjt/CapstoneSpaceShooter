@@ -145,7 +145,7 @@ MonoBehaviour:
   enemyIconChild: {fileID: 0}
   invToPirece: 0
   invLength: 0
-  dropRate: 40
+  dropRate: 50
 --- !u!136 &13639778
 CapsuleCollider:
   m_ObjectHideFlags: 1

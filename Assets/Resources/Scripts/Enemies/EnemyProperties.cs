@@ -84,13 +84,13 @@ public class EnemyProperties : MonoBehaviour {
 			if (!dropped)
 			{
 				dropped = true;
-				float dropCheck = Random.Range (1.0f,101.0f);
+				float dropCheck = Random.Range (1.0f,100.0f);
 				if (dropRate >= dropCheck)
 				{
 					//dropping an item
 					//first, choose which
 					GameObject powerup = null;
-					float dropType = Random.Range (1.0f,101.0f);
+					float dropType = Random.Range (1.0f,100.0f);
 					bool followerExists = (GameObject.FindGameObjectsWithTag("Follower").Length >= 1);
 					if (!followerExists)
 					{

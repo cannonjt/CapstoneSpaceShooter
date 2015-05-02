@@ -200,7 +200,7 @@ MonoBehaviour:
   enemyIconChild: {fileID: 100000}
   invToPirece: 0
   invLength: 0
-  dropRate: 10
+  dropRate: 25
 --- !u!114 &11422498
 MonoBehaviour:
   m_ObjectHideFlags: 1
