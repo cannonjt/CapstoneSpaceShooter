@@ -4160,7 +4160,7 @@ MonoBehaviour:
     zMax: 24
     zMin: -24
   wave: 0
-  totalWaves: 8
+  totalWaves: 5
 --- !u!114 &871080570
 MonoBehaviour:
   m_ObjectHideFlags: 0
